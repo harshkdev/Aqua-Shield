@@ -39,7 +39,7 @@ const PlatformOverview = () => {
   };
 
   return (
-    <section id="platform" className="py-28 bg-[#07162B] overflow-hidden relative">
+    <section id="platform" className="py-28 bg-[#F4F9FD] dark:bg-[#07162B] text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#00C2D1]/10 rounded-full blur-[128px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0B4F8C]/15 rounded-full blur-[128px] pointer-events-none" />
 
@@ -51,14 +51,14 @@ const PlatformOverview = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-cyan-400/25 text-[#00C2D1] text-xs font-semibold uppercase tracking-wider mb-5 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/25 dark:border-cyan-400/25 bg-white/90 dark:bg-[#0F2035]/90 text-[#0B4F8C] dark:text-[#00C2D1] text-xs font-inter font-medium backdrop-blur-md shadow-sm mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00C2D1] animate-pulse" />
-            Platform Overview
+            <span>Platform Overview</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-            Everything You Need for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C2D1] via-[#33E8F5] to-emerald-400">Water Intelligence</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-outfit font-light text-[#05223D] dark:text-white mb-6 tracking-tight leading-[1.18]">
+            Everything You Need for <span className="text-[#009FAB] dark:text-[#00C2D1] font-light">Water Intelligence</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-300">
+          <p className="text-[17px] sm:text-[18px] text-slate-600 dark:text-slate-300 font-outfit font-light leading-[1.65]">
             A unified ecosystem combining real-time IoT sensors, advanced AI predictions, and actionable analytics to protect water resources.
           </p>
         </motion.div>
@@ -71,17 +71,17 @@ const PlatformOverview = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(240px,auto)]"
         >
           {/* Row 1: AI Prediction (span 2) */}
-          <motion.div variants={fadeUp} className="md:col-span-2 row-span-2 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={fadeUp} className="md:col-span-2 row-span-2 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
             <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <Brain className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-2xl font-bold text-white mb-3">AI Prediction Engine</h3>
-              <p className="text-slate-300 max-w-md">
+              <h3 className="font-outfit font-semibold text-2xl text-[#05223D] dark:text-white mb-3">AI Prediction Engine</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm max-w-md leading-relaxed">
                 Proprietary neural networks analyze historical and real-time data to forecast contamination events up to 72 hours before they occur, allowing proactive mitigation.
               </p>
               
-              <div className="mt-8 flex-1 relative min-h-[120px] rounded-2xl bg-white/[0.04] overflow-hidden flex items-center justify-center border border-white/10">
+              <div className="mt-8 flex-1 relative min-h-[120px] rounded-2xl bg-slate-100/80 dark:bg-white/[0.04] overflow-hidden flex items-center justify-center border border-slate-200 dark:border-white/10">
                 <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
                   <path d="M50 80 Q 150 20 250 80 T 450 80" fill="transparent" stroke="#00C2D1" strokeWidth="2" strokeDasharray="5 5" />
                   <circle cx="50" cy="80" r="4" fill="#0B4F8C" className="animate-pulse" />
@@ -93,22 +93,22 @@ const PlatformOverview = () => {
           </motion.div>
 
           {/* Row 1: Real-time Monitoring (span 1) */}
-          <motion.div variants={fadeUp} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={fadeUp} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
             <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <Activity className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-3">Real-time Monitoring</h3>
-              <p className="text-slate-300 text-sm">
+              <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-3">Real-time Monitoring</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm leading-relaxed">
                 Continuous ingestion of telemetry from multi-parameter IoT probes.
               </p>
               
               <div className="mt-auto pt-6 flex items-end justify-between">
                 <div>
-                  <div className="text-3xl font-display font-bold text-white">7.2</div>
-                  <div className="text-xs text-slate-400">pH Level</div>
+                  <div className="text-3xl font-outfit font-bold text-[#05223D] dark:text-white">7.2</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">pH Level</div>
                 </div>
-                <div className="flex items-center gap-2 text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full text-xs font-semibold border border-emerald-500/30">
+                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full text-xs font-semibold border border-emerald-500/30">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   Live
                 </div>
@@ -117,15 +117,15 @@ const PlatformOverview = () => {
           </motion.div>
 
           {/* Row 2: GIS Mapping (span 1) */}
-          <motion.div variants={slideLeft} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={slideLeft} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
              <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <Map className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-2">GIS Mapping</h3>
-              <p className="text-slate-300 text-sm flex-1">Spatial analysis with topographic overlays.</p>
+              <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-2">GIS Mapping</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm flex-1 leading-relaxed">Spatial analysis with topographic overlays.</p>
               
-              <div className="w-full h-20 mt-4 rounded-xl overflow-hidden relative border border-white/10">
+              <div className="w-full h-20 mt-4 rounded-xl overflow-hidden relative border border-slate-200 dark:border-white/10">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#00C2D1]/20 via-transparent to-[#0B4F8C]/30" />
                 <div className="absolute top-1/2 left-1/4 w-3 h-3 bg-[#00C2D1] rounded-full border-2 border-white shadow-lg animate-bounce" />
                 <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-amber-400 rounded-full border-2 border-white shadow-lg animate-pulse" />
@@ -134,31 +134,31 @@ const PlatformOverview = () => {
           </motion.div>
 
           {/* Row 2: Smart Alerts (span 1) */}
-          <motion.div variants={slideRight} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={slideRight} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
             <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <Bell className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-2">Smart Alerts</h3>
-              <p className="text-slate-300 text-sm mb-4">Multi-channel notifications when thresholds are breached.</p>
+              <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-2">Smart Alerts</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm mb-4 leading-relaxed">Multi-channel notifications when thresholds are breached.</p>
               
               <div className="mt-auto relative h-14 w-full flex justify-center">
                 <div className="absolute bottom-0 w-full h-12 bg-amber-500/15 rounded-lg border border-amber-500/30 flex items-center px-4 gap-3 z-10">
                   <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                  <div className="text-xs text-amber-300 font-semibold">Anomaly Triggered</div>
+                  <div className="text-xs text-amber-700 dark:text-amber-300 font-semibold">Anomaly Triggered</div>
                 </div>
               </div>
             </div>
           </motion.div>
 
           {/* Row 2: Analytics (span 1) */}
-          <motion.div variants={slideRight} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={slideRight} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
              <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <BarChart3 className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-2">Analytics</h3>
-              <p className="text-slate-300 text-sm mb-4">Deep insights and automated reporting.</p>
+              <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-2">Analytics</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm mb-4 leading-relaxed">Deep insights and automated reporting.</p>
               
               <div className="mt-auto flex items-end gap-2 h-16 w-full px-2">
                 {[40, 70, 45, 90, 60, 80].map((height, i) => (
@@ -169,13 +169,13 @@ const PlatformOverview = () => {
           </motion.div>
 
           {/* Row 3: Community (span 1) */}
-          <motion.div variants={scaleIn} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/30 hover:shadow-xl hover:shadow-[#00C2D1]/10">
+          <motion.div variants={scaleIn} className="md:col-span-1 row-span-1 group relative rounded-3xl bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 p-8 overflow-hidden hover:-translate-y-1.5 transition-all duration-300 hover:border-cyan-400/40 shadow-sm hover:shadow-xl">
             <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform duration-300 shadow-md">
                 <Users className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-display text-xl font-bold text-white mb-2">Community Reporting</h3>
-              <p className="text-slate-300 text-sm mb-6">Crowdsourced observations to validate sensor data.</p>
+              <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-2">Community Reporting</h3>
+              <p className="text-slate-600 dark:text-slate-300 font-inter text-sm mb-6 leading-relaxed">Crowdsourced observations to validate sensor data.</p>
               
               <div className="mt-auto flex -space-x-3">
                 {[1, 2, 3, 4].map((i) => (

@@ -115,14 +115,14 @@ const recommendedActions = [
 ];
 
 const groupedLiveParameters = [
-  { label: 'pH Level', value: '7.2', status: 'Safe', level: 'green', updated: '18s ago' },
-  { label: 'Temperature', value: '24.8°C', status: 'Safe', level: 'green', updated: '18s ago' },
-  { label: 'Turbidity', value: '8.4 NTU', status: 'Moderate', level: 'amber', updated: '18s ago' },
-  { label: 'TDS (Solids)', value: '310 ppm', status: 'Safe', level: 'green', updated: '18s ago' },
-  { label: 'Dissolved Oxygen', value: '4.8 mg/L', status: 'High Risk', level: 'red', updated: '18s ago' },
-  { label: 'Conductivity', value: '420 µS/cm', status: 'Safe', level: 'green', updated: '18s ago' },
-  { label: 'Water Level', value: '2.8 m', status: 'Safe', level: 'green', updated: '18s ago' },
-  { label: 'Sensor Status', value: 'Online', status: '14 Active', level: 'green', updated: 'Live' },
+  { label: 'pH Level', num: '7.2', unit: '', status: 'Safe', level: 'green', updated: '18s ago' },
+  { label: 'Temperature', num: '24.8', unit: '°C', status: 'Safe', level: 'green', updated: '18s ago' },
+  { label: 'Turbidity', num: '8.4', unit: 'NTU', status: 'Moderate', level: 'amber', updated: '18s ago' },
+  { label: 'TDS (Solids)', num: '310', unit: 'ppm', status: 'Safe', level: 'green', updated: '18s ago' },
+  { label: 'Dissolved Oxygen', num: '4.8', unit: 'mg/L', status: 'High Risk', level: 'red', updated: '18s ago' },
+  { label: 'Conductivity', num: '420', unit: 'µS/cm', status: 'Safe', level: 'green', updated: '18s ago' },
+  { label: 'Water Level', num: '2.8', unit: 'm', status: 'Safe', level: 'green', updated: '18s ago' },
+  { label: 'Sensor Status', num: 'Online', unit: '', status: '14 Active', level: 'green', updated: 'Live' },
 ];
 
 const recentTimelineAlerts = [
@@ -240,100 +240,149 @@ export default function DashboardPreview() {
           <div className="grid grid-cols-12 gap-6 relative z-10">
             
             {/* ROW 1 — EXECUTIVE SUMMARY (4 Cards) */}
-            <div className="col-span-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+            {/* ROW 1 — EXECUTIVE SUMMARY (4 Refined Stat Cards) */}
+            <div className="col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               
               {/* Card 1: Water Quality Index */}
-              <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center justify-between transition-all duration-250 hover:-translate-y-1 hover:shadow-xl hover:border-[#00C2D1]/40 cursor-pointer">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-400 block mb-1">Water Quality Index</span>
-                  <div className="text-3xl font-outfit font-semibold text-slate-900 dark:text-white tabular-nums">
-                    <CountUp end={82} /> <span className="text-sm font-normal text-slate-400">/ 100</span>
-                  </div>
-                  <span className="inline-block text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full mt-1.5 border border-emerald-500/30">Good</span>
+              <div className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+                {/* Tier 1: Top Label & Minimal Outline Icon */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
+                    Water Quality Index
+                  </span>
+                  <Droplets className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-[#00C2D1] transition-colors" />
                 </div>
 
-                {/* Animated Circular Gauge */}
-                <div className="relative w-16 h-16">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle cx="32" cy="32" r="26" stroke="rgba(0,0,0,0.08)" className="dark:stroke-white/10" strokeWidth="6" fill="none" />
-                    <motion.circle
-                      cx="32" cy="32" r="26"
-                      stroke="#10B981"
-                      strokeWidth="6"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeDasharray="163.36"
-                      initial={{ strokeDashoffset: 163.36 }}
-                      animate={isInView ? { strokeDashoffset: 163.36 * (1 - 0.82) } : {}}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-emerald-500 font-mono">82%</div>
+                {/* Tier 2: Hero Number + Thick Semicircular Arc Gauge */}
+                <div className="flex items-end justify-between my-2">
+                  <div>
+                    <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                      <CountUp end={82} />
+                    </div>
+                  </div>
+                  {/* Semicircular Arc Gauge */}
+                  <div className="w-20 h-12 flex items-center justify-center">
+                    <svg className="w-20 h-12" viewBox="0 0 80 46">
+                      <defs>
+                        <linearGradient id="wqiArcGrad" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#0B4F8C" />
+                          <stop offset="100%" stopColor="#00C2D1" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M 10 40 A 30 30 0 0 1 70 40" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" className="text-slate-200 dark:text-slate-800" />
+                      <motion.path
+                        d="M 10 40 A 30 30 0 0 1 70 40"
+                        fill="none"
+                        stroke="url(#wqiArcGrad)"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray="94.25"
+                        initial={{ strokeDashoffset: 94.25 }}
+                        animate={isInView ? { strokeDashoffset: 94.25 * (1 - 0.82) } : {}}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                      />
+                    </svg>
+                  </div>
                 </div>
+
+                {/* Tier 3: Muted Subtext */}
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                  Status: Good · 100 max scale
+                </span>
               </div>
 
               {/* Card 2: AI Risk Score */}
-              <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center justify-between transition-all duration-250 hover:-translate-y-1 hover:shadow-xl hover:border-[#00C2D1]/40 cursor-pointer">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-400 block mb-1">AI Risk Score</span>
-                  <div className="text-2xl font-outfit font-semibold text-amber-500 dark:text-amber-400">
-                    Moderate <span className="text-sm font-bold text-slate-700 dark:text-slate-200 font-mono tabular-nums">(63%)</span>
-                  </div>
-                  <span className="inline-block text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 mt-1">Confidence 96%</span>
+              <div className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+                {/* Tier 1: Top Label & Minimal Outline Icon */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
+                    AI Risk Score
+                  </span>
+                  <Sparkles className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-[#00C2D1] transition-colors" />
                 </div>
 
-                {/* Animated Radial Gauge */}
-                <div className="relative w-16 h-16">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle cx="32" cy="32" r="26" stroke="rgba(0,0,0,0.08)" className="dark:stroke-white/10" strokeWidth="6" fill="none" />
-                    <motion.circle
-                      cx="32" cy="32" r="26"
-                      stroke="#F59E0B"
-                      strokeWidth="6"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeDasharray="163.36"
-                      initial={{ strokeDashoffset: 163.36 }}
-                      animate={isInView ? { strokeDashoffset: 163.36 * (1 - 0.63) } : {}}
-                      transition={{ duration: 1.5, ease: "easeOut" }}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-amber-500 font-mono">63%</div>
+                {/* Tier 2: Hero Number + Thick Semicircular Arc Gauge */}
+                <div className="flex items-end justify-between my-2">
+                  <div>
+                    <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                      63%
+                    </div>
+                  </div>
+                  {/* Severity Arc Gauge */}
+                  <div className="w-20 h-12 flex items-center justify-center">
+                    <svg className="w-20 h-12" viewBox="0 0 80 46">
+                      <defs>
+                        <linearGradient id="riskArcGrad" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#F59E0B" />
+                          <stop offset="100%" stopColor="#EF4444" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M 10 40 A 30 30 0 0 1 70 40" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" className="text-slate-200 dark:text-slate-800" />
+                      <motion.path
+                        d="M 10 40 A 30 30 0 0 1 70 40"
+                        fill="none"
+                        stroke="url(#riskArcGrad)"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray="94.25"
+                        initial={{ strokeDashoffset: 94.25 }}
+                        animate={isInView ? { strokeDashoffset: 94.25 * (1 - 0.63) } : {}}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                      />
+                    </svg>
+                  </div>
                 </div>
+
+                {/* Tier 3: Muted Subtext */}
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                  Status: Moderate · 96% confidence
+                </span>
               </div>
 
               {/* Card 3: Active Alerts */}
-              <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center justify-between transition-all duration-250 hover:-translate-y-1 hover:shadow-xl hover:border-[#00C2D1]/40 cursor-pointer">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-400 block mb-1">Active Alerts</span>
-                  <div className="text-3xl font-outfit font-semibold text-amber-500 dark:text-amber-400 tabular-nums">
-                    3 <span className="text-sm font-normal text-slate-400 font-sans">Warnings</span>
-                  </div>
-                  <div className="text-[11px] font-semibold text-slate-600 dark:text-slate-300 mt-1 flex items-center gap-2">
-                    <span className="text-red-500 font-bold">1 Critical</span>
-                    <span>•</span>
-                    <span className="text-amber-500 font-bold">2 Moderate</span>
+              <div className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+                {/* Tier 1: Top Label & Minimal Outline Icon */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
+                    Active Alerts
+                  </span>
+                  <AlertTriangle className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-amber-500 transition-colors" />
+                </div>
+
+                {/* Tier 2: Hero Number */}
+                <div className="my-2">
+                  <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                    3
                   </div>
                 </div>
 
-                <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-500">
-                  <AlertTriangle className="w-6 h-6" />
-                </div>
+                {/* Tier 3: Muted Subtext */}
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                  1 critical · 2 moderate warnings
+                </span>
               </div>
 
               {/* Card 4: Live Sensors */}
-              <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center justify-between transition-all duration-250 hover:-translate-y-1 hover:shadow-xl hover:border-[#00C2D1]/40 cursor-pointer">
-                <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-400 block mb-1">Live Sensors</span>
-                  <div className="text-3xl font-outfit font-semibold text-emerald-600 dark:text-emerald-400 tabular-nums">
-                    14 <span className="text-sm font-normal text-slate-400 font-sans">Online</span>
-                  </div>
-                  <span className="inline-block text-[11px] font-semibold text-amber-500 mt-1">1 Maintenance</span>
+              <div className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+                {/* Tier 1: Top Label & Minimal Outline Icon */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
+                    Live Sensors
+                  </span>
+                  <Cpu className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-emerald-500 transition-colors" />
                 </div>
 
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
-                  <Cpu className="w-6 h-6" />
+                {/* Tier 2: Hero Number */}
+                <div className="my-2">
+                  <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                    14
+                  </div>
                 </div>
+
+                {/* Tier 3: Muted Subtext */}
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                  14 probes online · 1 maintenance
+                </span>
               </div>
 
             </div>
@@ -504,7 +553,16 @@ export default function DashboardPreview() {
                             p.level === 'green' ? 'text-emerald-500 bg-emerald-500/10' : p.level === 'amber' ? 'text-amber-500 bg-amber-500/10' : 'text-red-500 bg-red-500/10'
                           }`}>{p.status}</span>
                         </div>
-                        <div className="text-2xl font-outfit font-semibold text-slate-900 dark:text-white tabular-nums my-0.5">{p.value}</div>
+                        <div className="flex items-baseline gap-1 my-1">
+                          <span className="text-2xl font-bold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                            {p.num}
+                          </span>
+                          {p.unit && (
+                            <span className="text-xs font-medium font-mono text-slate-500 dark:text-slate-400">
+                              {p.unit}
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <span className="text-[10px] text-slate-400 font-mono block mt-1">Updated {p.updated}</span>
                     </div>
@@ -524,22 +582,24 @@ export default function DashboardPreview() {
                   </div>
 
                   <div className="grid grid-cols-2 gap-3 text-sm font-sans mb-3">
-                    <div className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <span className="text-slate-500 dark:text-slate-400 text-xs block">Temperature</span>
-                      <span className="text-lg font-bold text-slate-900 dark:text-white font-mono tabular-nums">28°C</span>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <span className="text-slate-500 dark:text-slate-400 text-xs block">Humidity</span>
-                      <span className="text-lg font-bold text-slate-900 dark:text-white font-mono tabular-nums">82%</span>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <span className="text-slate-500 dark:text-slate-400 text-xs block">Rainfall</span>
-                      <span className="text-lg font-bold text-cyan-600 dark:text-cyan-400 font-mono tabular-nums">12 mm</span>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
-                      <span className="text-slate-500 dark:text-slate-400 text-xs block">Wind</span>
-                      <span className="text-lg font-bold text-slate-900 dark:text-white font-mono tabular-nums">18 km/h</span>
-                    </div>
+                    {[
+                      { label: 'Temperature', num: '28', unit: '°C' },
+                      { label: 'Humidity', num: '82', unit: '%' },
+                      { label: 'Rainfall', num: '12', unit: 'mm', isHighlight: true },
+                      { label: 'Wind', num: '18', unit: 'km/h' },
+                    ].map((item) => (
+                      <div key={item.label} className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+                        <span className="text-slate-500 dark:text-slate-400 text-xs block">{item.label}</span>
+                        <div className="flex items-baseline gap-1 my-1">
+                          <span className={`text-2xl font-bold font-mono tracking-tight tabular-nums ${item.isHighlight ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-900 dark:text-white'}`}>
+                            {item.num}
+                          </span>
+                          <span className="text-xs font-medium font-mono text-slate-500 dark:text-slate-400">
+                            {item.unit}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 

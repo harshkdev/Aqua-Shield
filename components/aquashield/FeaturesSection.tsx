@@ -90,20 +90,20 @@ const FeatureCard = ({ feature, index }: { feature: any, index: number }) => {
           transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transition: 'transform 0.1s ease-out, box-shadow 0.3s ease'
         }}
-        className="group relative h-full rounded-2xl p-8 bg-[#0F2035]/70 backdrop-blur-xl border border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(0,194,209,0.2)]"
+        className="group relative h-full rounded-3xl p-8 bg-white/90 dark:bg-[#0F2035]/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-cyan-400/40 shadow-sm hover:shadow-xl flex flex-col justify-between"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#00C2D1]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[length:200%_200%]" />
         
         <div className="relative z-10 flex flex-col h-full">
-          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300 shadow-md">
-            <feature.icon className="w-7 h-7 text-white" />
+          <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#0B4F8C] to-[#00C2D1] flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform duration-300 shadow-md">
+            <feature.icon className="w-6 h-6 text-white" />
           </div>
           
-          <h3 className="font-display font-bold text-xl text-white mb-3">
+          <h3 className="font-outfit font-semibold text-xl text-[#05223D] dark:text-white mb-3">
             {feature.title}
           </h3>
           
-          <p className="text-slate-300 text-sm leading-relaxed flex-1">
+          <p className="text-slate-600 dark:text-slate-300 font-inter text-sm leading-relaxed flex-1">
             {feature.description}
           </p>
         </div>
@@ -117,7 +117,7 @@ const FeaturesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="features" className="py-28 bg-[#07162B] relative overflow-hidden">
+    <section id="features" className="py-28 bg-[#F4F9FD] dark:bg-[#07162B] text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#00C2D1]/10 rounded-full blur-[130px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -128,12 +128,12 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-cyan-400/25 text-[#00C2D1] text-xs font-semibold uppercase tracking-wider mb-5 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/25 dark:border-cyan-400/25 bg-white/90 dark:bg-[#0F2035]/90 text-[#0B4F8C] dark:text-[#00C2D1] text-xs font-inter font-medium backdrop-blur-md shadow-sm mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00C2D1] animate-pulse" />
-            Core Features
+            <span>Core Features</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-            Intelligent Features for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C2D1] via-[#33E8F5] to-emerald-400">Smarter Water Management</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-outfit font-light text-[#05223D] dark:text-white mb-6 tracking-tight leading-[1.18]">
+            Intelligent Features for <span className="text-[#009FAB] dark:text-[#00C2D1] font-light">Smarter Water Management</span>
           </h2>
         </motion.div>
 

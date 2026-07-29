@@ -3,6 +3,17 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
+const staticBubbles = [
+  { id: 1, size: 24, left: '12%', duration: 18, delay: 0, deltaX: 15 },
+  { id: 2, size: 14, left: '28%', duration: 22, delay: 3, deltaX: -20 },
+  { id: 3, size: 30, left: '44%', duration: 16, delay: 1, deltaX: 25 },
+  { id: 4, size: 18, left: '58%', duration: 24, delay: 4, deltaX: -15 },
+  { id: 5, size: 22, left: '72%', duration: 19, delay: 2, deltaX: 18 },
+  { id: 6, size: 16, left: '85%', duration: 21, delay: 5, deltaX: -22 },
+  { id: 7, size: 28, left: '35%', duration: 17, delay: 2.5, deltaX: 12 },
+  { id: 8, size: 12, left: '92%', duration: 25, delay: 1.5, deltaX: -18 },
+];
+
 export default function CTASection() {
   return (
     <section id="cta" className="relative py-28 md:py-36 overflow-hidden bg-gradient-to-br from-[#07162B] via-[#063561] to-[#0B4F8C]">
@@ -11,25 +22,25 @@ export default function CTASection() {
 
       {/* Floating Bubbles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {staticBubbles.map((b) => (
           <motion.div
-            key={i}
+            key={b.id}
             className="absolute rounded-full bg-cyan-400/20 backdrop-blur-sm"
             style={{
-              width: Math.random() * 24 + 8 + "px",
-              height: Math.random() * 24 + 8 + "px",
-              left: Math.random() * 100 + "%",
+              width: `${b.size}px`,
+              height: `${b.size}px`,
+              left: b.left,
               bottom: "-50px",
             }}
             animate={{
               y: [0, -900],
-              x: [0, Math.random() * 40 - 20, Math.random() * 40 - 20, 0],
+              x: [0, b.deltaX, -b.deltaX, 0],
               opacity: [0, 0.4, 0],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: b.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: b.delay,
               ease: "linear",
             }}
           />
