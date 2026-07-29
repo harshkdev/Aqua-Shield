@@ -15,7 +15,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
   },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react", "framer-motion", "recharts"],
   },
   devIndicators: {
     buildActivity: false,

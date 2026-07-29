@@ -20,42 +20,40 @@ export function useTheme() {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("hacknfinity-theme") as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initial = saved || preferred;
-    setTheme(initial);
-    applyTheme(initial);
-  }, []);
 
   const applyTheme = (t: Theme) => {
     const root = document.documentElement;
-    if (t === "light") {
-      root.classList.add("light");
-      root.classList.remove("dark");
-    } else {
-      root.classList.remove("light");
+    const body = document.body;
+    if (t === "dark") {
       root.classList.add("dark");
+      root.classList.remove("light");
+      if (body) {
+        body.classList.add("dark");
+        body.classList.remove("light");
+      }
+    } else {
+      root.classList.remove("dark");
+      root.classList.add("light");
+      if (body) {
+        body.classList.remove("dark");
+        body.classList.add("light");
+      }
     }
   };
+
+  useEffect(() => {
+    const saved = localStorage.getItem("aquashield-theme") as Theme | null;
+    const initial = saved || "dark";
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
 
   const toggleTheme = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
     setTheme(next);
     applyTheme(next);
-    localStorage.setItem("hacknfinity-theme", next);
+    localStorage.setItem("aquashield-theme", next);
   };
-
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider value={{ theme: "dark", toggleTheme: () => {} }}>
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

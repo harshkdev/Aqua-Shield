@@ -1,5 +1,5 @@
 {
-  "name": "hacknfinity",
+  "name": "aquashield",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,12 +12,14 @@
     "@clerk/nextjs": "^7.5.20",
     "@clerk/themes": "^2.4.57",
     "@hookform/resolvers": "^5.4.0",
+    "@types/leaflet": "^1.9.21",
     "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.42.2",
+    "leaflet": "^1.9.4",
     "lucide-react": "^1.25.0",
     "mongoose": "^9.7.4",
     "next": "16.2.10",
@@ -30,6 +32,8 @@
     "react-hook-form": "^7.81.0",
     "react-hot-toast": "^2.6.0",
     "react-intersection-observer": "^10.1.0",
+    "react-leaflet": "^5.0.0",
+    "recharts": "^3.10.1",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
