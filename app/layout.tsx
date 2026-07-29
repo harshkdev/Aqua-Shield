@@ -1,28 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aquashield.ai"),
@@ -87,9 +67,7 @@ export default function RootLayout({
       }}
     >
       <html lang="en" className="dark" suppressHydrationWarning>
-        <body
-          className={`${inter.variable} ${spaceGrotesk.variable} ${outfit.variable} antialiased`}
-        >
+        <body className="antialiased font-sans">
           <ThemeProvider>
             <main>{children}</main>
             <Toaster
