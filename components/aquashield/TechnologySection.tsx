@@ -52,7 +52,7 @@ export default function TechnologySection() {
       opacity: 1, 
       scale: 1, 
       filter: "blur(0px)",
-      transition: { duration: 0.6, ease: "easeOut" } 
+      transition: { duration: 0.6, ease: "easeOut" as const } 
     },
   };
 

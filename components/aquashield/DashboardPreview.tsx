@@ -177,7 +177,7 @@ export default function DashboardPreview() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-[54px] font-outfit font-light text-[#0B2545] dark:text-white mb-4 tracking-tight leading-[1.18]"
+            className="text-4xl sm:text-5xl lg:text-[54px] font-outfit font-light text-[#05223D] dark:text-white mb-4 tracking-tight leading-[1.18]"
           >
             Municipal Water <span className="text-[#009FAB] dark:text-[#00C2D1] font-light">Command Center</span>
           </motion.h2>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -14,6 +14,13 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -81,7 +88,7 @@ export default function RootLayout({
     >
       <html lang="en" className="dark" suppressHydrationWarning>
         <body
-          className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
+          className={`${inter.variable} ${spaceGrotesk.variable} ${outfit.variable} antialiased`}
         >
           <ThemeProvider>
             <main>{children}</main>

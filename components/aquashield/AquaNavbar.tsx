@@ -143,7 +143,7 @@ export default function AquaNavbar() {
                 {theme === 'dark' ? <Sun className="w-[18px] h-[18px] text-amber-400" /> : <Moon className="w-[18px] h-[18px] text-slate-700" />}
               </button>
             )}
-            <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0B4F8C] to-[#00A8B5] text-white text-[13px] font-semibold transition-all duration-300 hover:shadow-[0_0_24px_rgba(0,194,209,0.35)] hover:-translate-y-[1px] active:translate-y-0 active:shadow-none">
+            <button className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#0B4F8C] to-[#00A8B5] text-white text-[13px] font-inter font-semibold transition-all duration-200 shadow-sm hover:shadow-[0_4px_20px_rgba(0,194,209,0.3)] hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer">
               Get Started
             </button>
           </div>
