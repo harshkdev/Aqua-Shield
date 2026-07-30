@@ -66,7 +66,7 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en" className="dark" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning>
         <head>
           <script
             dangerouslySetInnerHTML={{

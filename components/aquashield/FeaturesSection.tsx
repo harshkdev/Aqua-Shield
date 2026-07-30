@@ -64,19 +64,17 @@ const FeatureCard = ({ feature, index }: { feature: any, index: number }) => {
     setRotateY(0);
   };
 
-  const isEven = index % 2 === 0;
-
   const itemVariants = {
     hidden: { 
       opacity: 0, 
-      x: isEven ? -40 : 40 
+      y: 36,
     },
     visible: { 
       opacity: 1, 
-      x: 0,
+      y: 0,
       transition: { 
-        duration: 0.6, 
-        ease: "easeOut" as const 
+        duration: 0.55, 
+        ease: [0.215, 0.61, 0.355, 1] as const 
       }
     }
   };

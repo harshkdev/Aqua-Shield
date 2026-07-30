@@ -89,69 +89,45 @@ export default function HeroSection() {
           <div className="w-full lg:w-[48%] flex flex-col items-start text-left space-y-8">
             
             {/* Unified Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.02, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.04, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/25 dark:border-cyan-400/25 bg-white/80 dark:bg-[#0F2035]/80 text-[#0B4F8C] dark:text-[#00C2D1] text-xs font-inter font-medium backdrop-blur-xl shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#00C2D1] animate-pulse" />
               <span>AI-Powered Water Intelligence</span>
             </motion.div>
 
-            {/* Word-by-Word Headline Animation with Flowing Aqua Gradient */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[60px] font-outfit font-light text-[#0B2545] dark:text-white tracking-tight leading-[1.12] flex flex-wrap items-center gap-x-3 gap-y-1">
-              {line1Words.map((word, i) => (
-                <motion.span
-                  key={word}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={wordAnimationVariants}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <div className="w-full h-0" />
-              {line2Words.map((word, i) => (
-                <motion.span
-                  key={word}
-                  custom={i + 3}
-                  initial="hidden"
-                  animate="visible"
-                  variants={wordAnimationVariants}
-                  className="inline-block"
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <motion.span
-                custom={6}
-                initial="hidden"
-                animate="visible"
-                variants={wordAnimationVariants}
-                className="inline-block font-light text-transparent bg-clip-text bg-gradient-to-r from-[#00C2D1] via-[#1DD3F8] to-[#009FAB] animate-gradient-flow"
-              >
+            {/* Headline with Flowing Aqua Gradient */}
+            <motion.h1 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl lg:text-[60px] font-outfit font-light text-[#0B2545] dark:text-white tracking-tight leading-[1.12]"
+            >
+              Predict Water Risks <br className="hidden sm:inline" />
+              Before They Become{" "}
+              <span className="font-light text-transparent bg-clip-text bg-gradient-to-r from-[#00C2D1] via-[#1DD3F8] to-[#009FAB] animate-gradient-flow inline-block">
                 Health Risks
-              </motion.span>
-            </h1>
+              </span>
+            </motion.h1>
 
             {/* Subheadline Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
+            <motion.p 
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.20, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="text-[17px] sm:text-[18px] text-[#61748A] dark:text-slate-300 font-outfit font-light leading-[1.65] max-w-[540px]"
             >
               Real-time sensor telemetry, environmental AI insights, and predictive contamination advisories — combined into smart alerts that help communities make safer decisions.
             </motion.p>
 
             {/* Premium CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.28, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.28, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-1"
             >
               {/* Primary Button */}
@@ -168,10 +144,10 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Real-time Telemetry Metrics Summary Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
+            <motion.div 
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.36, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-wrap items-center gap-y-2 gap-x-8 pt-4 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-200/60 dark:border-slate-800/80 w-full font-inter"
             >
               <div className="flex items-center gap-2">
@@ -210,10 +186,11 @@ export default function HeroSection() {
               className="relative w-full max-w-xl mx-auto py-4 px-2"
             >
 
-              {/* MAIN HERO CARD CONTAINER (Entire Dashboard Floats 6px Up & Down in 7s Infinite Loop) */}
+              {/* MAIN HERO CARD CONTAINER (Entire Dashboard Floats Upwards with Smooth Entrance) */}
               <motion.div 
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="relative z-10 bg-white/78 dark:bg-[#0F2035]/85 backdrop-blur-[20px] rounded-3xl border border-white/55 dark:border-cyan-500/20 shadow-2xl dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] p-5 sm:p-7 overflow-hidden transition-shadow duration-300 hover:shadow-[0_30px_70px_-15px_rgba(0,194,209,0.25)]"
               >
                 {/* Specular Top Edge Reflection Highlight */}
@@ -227,7 +204,12 @@ export default function HeroSection() {
                 />
 
                 {/* 1. TOP CONTEXT CARD: Real Northeast India Location */}
-                <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-200/60 dark:border-slate-800/80 relative z-10">
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.30, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex justify-between items-center pb-4 mb-4 border-b border-slate-200/60 dark:border-slate-800/80 relative z-10"
+                >
                   <div className="flex items-center gap-3">
                     <div className="w-8.5 h-8.5 rounded-xl bg-[#00C2D1]/15 border border-[#00C2D1]/30 flex items-center justify-center text-[#00C2D1]">
                       <MapPin className="w-4.5 h-4.5" />
@@ -250,10 +232,15 @@ export default function HeroSection() {
                     </span>
                     <span className="font-mono text-[11px] font-semibold">Live GIS Sensor Stream</span>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* 2. CENTER HERO CARD: "Cholera Outbreak Risk · Next 72h" */}
-                <div className="bg-slate-50/90 dark:bg-[#132338]/90 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-800 mb-4 relative overflow-hidden shadow-inner z-10">
+                <motion.div 
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.40, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-slate-50/90 dark:bg-[#132338]/90 rounded-2xl p-5 border border-slate-200/60 dark:border-slate-800 mb-4 relative overflow-hidden shadow-inner z-10"
+                >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                     <div className="flex items-center gap-2.5">
                       <div className="w-7.5 h-7.5 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-500">
@@ -272,7 +259,7 @@ export default function HeroSection() {
                     {/* Smooth Counting Risk Score (0 -> 63) */}
                     <div className="text-right flex-shrink-0">
                       <span className="text-xs sm:text-sm font-inter font-bold text-amber-500 dark:text-amber-400 tabular-nums">
-                        Risk Score: {isMounted ? <CountUpValue end={63} /> : 63}/100
+                        Risk Score: 63/100
                       </span>
                       <div className="text-[10px] text-[#61748A] dark:text-slate-400 font-inter font-semibold">
                         Moderate Health Risk
@@ -319,7 +306,7 @@ export default function HeroSection() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* 3. HORIZONTAL 3-STEP "EARLY WARNING CHAIN" STRIP */}
                 <div className="mb-4 relative z-10">
@@ -335,7 +322,7 @@ export default function HeroSection() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.85, duration: 0.5 }}
+                      transition={{ delay: 0.52, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -2 }}
                       className="relative z-10 bg-white/90 dark:bg-[#132338]/95 p-3 rounded-xl border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between hover:border-cyan-400/50 transition-all shadow-sm cursor-pointer"
                     >
@@ -359,7 +346,7 @@ export default function HeroSection() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.95, duration: 0.5 }}
+                      transition={{ delay: 0.62, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -2 }}
                       className="relative z-10 bg-white/90 dark:bg-[#132338]/95 p-3 rounded-xl border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between hover:border-amber-400/50 transition-all shadow-sm cursor-pointer"
                     >
@@ -383,7 +370,7 @@ export default function HeroSection() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.05, duration: 0.5 }}
+                      transition={{ delay: 0.72, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -2 }}
                       className="relative z-10 bg-white/90 dark:bg-[#132338]/95 p-3 rounded-xl border border-slate-200/70 dark:border-slate-800 flex flex-col justify-between hover:border-emerald-400/50 transition-all shadow-sm cursor-pointer"
                     >
@@ -409,7 +396,7 @@ export default function HeroSection() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.15, duration: 0.5 }}
+                  transition={{ delay: 0.82, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="p-3 rounded-xl bg-gradient-to-r from-cyan-500/10 via-cyan-500/5 to-transparent border-l-4 border-[#00C2D1] border-y border-r border-slate-200/60 dark:border-slate-800/80 flex items-center justify-between text-xs font-inter relative z-10 shadow-sm"
                 >
                   <div className="flex items-center gap-2">

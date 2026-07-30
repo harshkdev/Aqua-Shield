@@ -30,14 +30,18 @@ const dustParticles = Array.from({ length: 15 }, (_, i) => ({
 }));
 
 const referenceBubbles = [
-  { id: 1, size: 10, left: '39.5%', top: '3%' },
-  { id: 2, size: 12, left: '23.2%', top: '26%' },
-  { id: 3, size: 11, left: '6.8%', top: '45.5%' },
-  { id: 4, size: 8, left: '31.4%', top: '84%' },
-  { id: 5, size: 9, left: '79.2%', top: '7.8%' },
-  { id: 6, size: 10, left: '63.2%', top: '28.5%' },
-  { id: 7, size: 7, left: '64.1%', top: '38.2%' },
-  { id: 8, size: 6, left: '71.1%', top: '87.8%' },
+  { id: 1, size: 10, left: '39.5%', top: '3%', duration: 7, delay: -1.2, deltaX: 14, deltaY: 22 },
+  { id: 2, size: 12, left: '23.2%', top: '26%', duration: 9, delay: -3.5, deltaX: -16, deltaY: 26 },
+  { id: 3, size: 11, left: '6.8%', top: '45.5%', duration: 8, delay: -0.8, deltaX: 18, deltaY: 20 },
+  { id: 4, size: 8, left: '31.4%', top: '84%', duration: 6.5, delay: -4.2, deltaX: -12, deltaY: 24 },
+  { id: 5, size: 9, left: '79.2%', top: '7.8%', duration: 10, delay: -2.1, deltaX: 16, deltaY: 28 },
+  { id: 6, size: 10, left: '63.2%', top: '28.5%', duration: 7.5, delay: -5.0, deltaX: -18, deltaY: 22 },
+  { id: 7, size: 7, left: '64.1%', top: '38.2%', duration: 8.5, delay: -1.8, deltaX: 14, deltaY: 25 },
+  { id: 8, size: 6, left: '71.1%', top: '87.8%', duration: 9.5, delay: -4.8, deltaX: -15, deltaY: 20 },
+  { id: 9, size: 9, left: '15.4%', top: '65.2%', duration: 8.0, delay: -2.7, deltaX: 16, deltaY: 24 },
+  { id: 10, size: 11, left: '86.2%', top: '52.0%', duration: 9.0, delay: -4.1, deltaX: -14, deltaY: 26 },
+  { id: 11, size: 8, left: '52.0%', top: '72.4%', duration: 7.2, delay: -1.5, deltaX: 15, deltaY: 22 },
+  { id: 12, size: 10, left: '44.8%', top: '18.2%', duration: 8.8, delay: -3.2, deltaX: -13, deltaY: 24 },
 ];
 
 export default function WaveBackground({
@@ -106,7 +110,7 @@ export default function WaveBackground({
         ))}
       </div>
 
-      {/* LAYER 6: Reference Cyan Dots */}
+      {/* LAYER 6: Reference Cyan Dots with Floating Pulse Animation */}
       <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -122,67 +126,16 @@ export default function WaveBackground({
               height: `${b.size}px`,
               left: b.left,
               top: b.top,
-            }}
-            className="absolute rounded-full bg-[#00C2D1] shadow-[0_0_10px_rgba(0,194,209,0.5)] dark:bg-[#33E8F5] dark:shadow-[0_0_10px_rgba(51,232,245,0.7)]"
+              '--dot-x': `${b.deltaX}px`,
+              '--dot-y': `${b.deltaY}px`,
+              '--dot-duration': `${b.duration}s`,
+              '--dot-delay': `${b.delay}s`,
+            } as React.CSSProperties}
+            className="cyan-dot-bubble absolute rounded-full bg-[#00C2D1] shadow-[0_0_10px_rgba(0,194,209,0.5)] dark:bg-[#33E8F5] dark:shadow-[0_0_10px_rgba(51,232,245,0.7)]"
           />
         ))}
       </div>
-
-      {/* LAYER 7: 3 Overlapping Parallax Water Waves at Bottom */}
-      <div className="absolute bottom-0 inset-x-0 h-24 pointer-events-none z-10 overflow-hidden">
-        {/* Wave 1 */}
-        <svg 
-          className="wave-sway absolute bottom-0 w-full h-20 opacity-10 dark:opacity-5" 
-          viewBox="0 0 1440 120" 
-          fill="none" 
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 50 C 360 90, 720 20, 1080 70 C 1260 40, 1380 15, 1440 45 L1440 120 L0 120 Z"
-            fill="#0B4F8C"
-          />
-        </svg>
-
-        {/* Wave 2 */}
-        <svg 
-          className="wave-sway-reverse absolute bottom-0 w-full h-20 opacity-15 dark:opacity-10" 
-          viewBox="0 0 1440 120" 
-          fill="none" 
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 60 C 360 20, 720 100, 1080 40 C 1260 10, 1380 70, 1440 60 L1440 120 L0 120 Z"
-            fill="url(#waveGrad2)"
-          />
-          <defs>
-            <linearGradient id="waveGrad2" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#00C2D1" />
-              <stop offset="50%" stopColor="#33E8F5" />
-              <stop offset="100%" stopColor="#009FAB" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        {/* Wave 3 */}
-        <svg 
-          className="wave-sway absolute bottom-0 w-full h-16 opacity-20 dark:opacity-15" 
-          viewBox="0 0 1440 120" 
-          fill="none" 
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 70 C 360 40, 720 80, 1080 50 C 1260 30, 1380 60, 1440 70 L1440 120 L0 120 Z"
-            fill="url(#waveGrad3)"
-          />
-          <defs>
-            <linearGradient id="waveGrad3" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#33E8F5" />
-              <stop offset="100%" stopColor="#00C2D1" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
+      {/* Bottom waves are rendered fixed at z-30 in front of content via BottomWaveOverlay */}
     </div>
   );
 }
