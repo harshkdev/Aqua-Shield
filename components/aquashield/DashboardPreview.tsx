@@ -5,6 +5,7 @@ import { motion, useInView, animate } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { AlertTriangle, CheckCircle, Radio, AlertCircle, ShieldAlert, Cpu, Sparkles, MapPin, Clock, CloudRain, Activity, Thermometer, Droplets, Check, CheckCircle2, Biohazard, ArrowUpRight, TrendingUp, FlaskConical } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const MapComponent = dynamic(() => import('./MapComponent'), {
   ssr: false,
@@ -154,10 +155,10 @@ export default function DashboardPreview() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [activeTrendTab, setActiveTrendTab] = useState<'pH' | 'Turbidity' | 'Temp' | 'WQI' | 'Risk'>('Turbidity');
+  const { theme } = useTheme();
 
   return (
-    <section id="dashboard" className="py-28 relative overflow-hidden bg-[#F0F8FF] dark:bg-[#07162B] transition-colors duration-500">
-      
+    <section id="dashboard" className="py-28 relative overflow-hidden bg-transparent transition-colors duration-500">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         
         {/* Section Header */}

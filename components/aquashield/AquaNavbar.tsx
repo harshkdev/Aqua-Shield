@@ -90,7 +90,7 @@ export default function AquaNavbar() {
       }}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center" style={{ height: '78px' }}>
+        <div className="flex justify-between items-center transition-all duration-300" style={{ height: isScrolled ? '68px' : '78px' }}>
           {/* Logo */}
           <div
             className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group"

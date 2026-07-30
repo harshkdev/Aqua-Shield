@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
@@ -13,9 +14,6 @@ const nextConfig = {
       { protocol: "https", hostname: "via.placeholder.com" },
     ],
     dangerouslyAllowSVG: true,
-  },
-  experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "recharts"],
   },
   devIndicators: false,
 };

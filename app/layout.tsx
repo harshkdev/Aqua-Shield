@@ -67,6 +67,28 @@ export default function RootLayout({
       }}
     >
       <html lang="en" className="dark" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  try {
+                    var saved = localStorage.getItem('aquashield-theme');
+                    var theme = saved || 'dark';
+                    var root = document.documentElement;
+                    if (theme === 'dark') {
+                      root.classList.add('dark');
+                      root.classList.remove('light');
+                    } else {
+                      root.classList.remove('dark');
+                      root.classList.add('light');
+                    }
+                  } catch (e) {}
+                })();
+              `,
+            }}
+          />
+        </head>
         <body className="antialiased font-sans">
           <ThemeProvider>
             <main>{children}</main>

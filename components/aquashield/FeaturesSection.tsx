@@ -3,6 +3,7 @@
 import React, { useRef, useState, MouseEvent } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Activity, Brain, Map, Bell, BarChart3, TrendingUp } from 'lucide-react';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const features = [
   {
@@ -115,11 +116,11 @@ const FeatureCard = ({ feature, index }: { feature: any, index: number }) => {
 const FeaturesSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { theme } = useTheme();
 
   return (
-    <section id="features" className="py-28 bg-[#F4F9FD] dark:bg-[#07162B] text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-[#00C2D1]/10 rounded-full blur-[130px] pointer-events-none" />
-      
+    <section id="features" className="py-28 bg-transparent text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

@@ -11,6 +11,9 @@ import StatsSection from "@/components/aquashield/StatsSection";
 import CTASection from "@/components/aquashield/CTASection";
 import AquaFooter from "@/components/aquashield/AquaFooter";
 import CursorEffects from "@/components/aquashield/CursorEffects";
+import WaveBackground from "@/components/aquashield/WaveBackground";
+import { useTheme } from "@/components/providers/ThemeProvider";
+import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
 // Dynamic import for DashboardPreview (contains Leaflet which needs SSR disabled)
 const DashboardPreview = dynamic(
@@ -28,23 +31,34 @@ const DashboardPreview = dynamic(
 );
 
 export default function LandingPage() {
+  const { theme } = useTheme();
+
   return (
-    <>
-      <CursorEffects />
-      <AquaNavbar />
+    <SmoothScrollProvider>
+      <div className="relative min-h-screen bg-[#F2FAFD] dark:bg-[#07162B] transition-colors duration-500">
+        {/* 1 Single Global GPU-Accelerated Atmospheric Backdrop (0% CPU Footprint) */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <WaveBackground />
+        </div>
 
-      <section id="home">
-        <HeroSection />
-      </section>
+        <div className="relative z-10">
+          <CursorEffects />
+          <AquaNavbar />
 
-      <FeaturesSection />
-      <HowItWorks />
-      <DashboardPreview />
-      <AIInsights />
-      <TechnologySection />
-      <StatsSection />
-      <CTASection />
-      <AquaFooter />
-    </>
+          <section id="home">
+            <HeroSection />
+          </section>
+
+          <FeaturesSection />
+          <HowItWorks />
+          <DashboardPreview />
+          <AIInsights />
+          <TechnologySection />
+          <StatsSection />
+          <CTASection />
+          <AquaFooter />
+        </div>
+      </div>
+    </SmoothScrollProvider>
   );
 }

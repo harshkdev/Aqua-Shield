@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 import { Droplets, Brain, Target, Zap } from 'lucide-react';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const useTypingEffect = (text: string, startTyping: boolean, speed = 35) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -49,6 +50,7 @@ function CountUp({ end, duration = 2, decimals = 0, suffix = "", prefix = "" }: 
 export default function AIInsights() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { theme } = useTheme();
 
   const aiText = `Water Quality Analysis\n━━━━━━━━━━━━━━━━━━━━\n\nStatus: Stable ✓\n\nRainfall Forecast: ↑ 32%\n\nContamination Risk: Medium ⚠\n\nPrediction:\nContamination probability will increase\nwithin the next 48 hours.\n\nConfidence: 94%`;
   
@@ -62,9 +64,7 @@ export default function AIInsights() {
   ];
 
   return (
-    <section id="insights" className="py-28 relative overflow-hidden bg-[#F0F8FF] dark:bg-[#07162B] transition-colors duration-500">
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-[#00C2D1]/10 rounded-full blur-[130px] pointer-events-none" />
-
+    <section id="insights" className="py-28 relative overflow-hidden bg-transparent transition-colors duration-500">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         
         <div className="text-center mb-16">

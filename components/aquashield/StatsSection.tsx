@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 import { Droplets, Database, Brain, MapPin } from "lucide-react";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 const stats = [
   {
@@ -33,14 +34,14 @@ const stats = [
 ];
 
 export default function StatsSection() {
+  const { theme } = useTheme();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#F0F8FF] dark:bg-[#07162B] transition-colors duration-500">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,194,209,0.08)_0%,transparent_70%)] pointer-events-none" />
+    <section className="py-24 relative overflow-hidden bg-transparent transition-colors duration-500">
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10" ref={ref}>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">

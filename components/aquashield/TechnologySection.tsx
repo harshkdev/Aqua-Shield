@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Brain, Wifi, TrendingUp, MapPin, Cloud, Zap } from "lucide-react";
+import { useTheme } from "@/components/providers/ThemeProvider";
 
 const technologies = [
   {
@@ -37,6 +38,7 @@ const technologies = [
 ];
 
 export default function TechnologySection() {
+  const { theme } = useTheme();
   const containerVariants = {
     hidden: {},
     visible: {
@@ -57,9 +59,7 @@ export default function TechnologySection() {
   };
 
   return (
-    <section id="technology" className="py-28 bg-[#F0F8FF] dark:bg-[#07162B] text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
-      {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00C2D1]/10 rounded-full blur-[150px] pointer-events-none" />
+    <section id="technology" className="py-28 bg-transparent text-slate-900 dark:text-white relative overflow-hidden transition-colors duration-500">
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         

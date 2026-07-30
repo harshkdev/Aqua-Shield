@@ -42,10 +42,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    const saved = localStorage.getItem("aquashield-theme") as Theme | null;
-    const initial = saved || "dark";
-    setTheme(initial);
-    applyTheme(initial);
+    // Read the current theme class established by synchronous head script
+    const root = document.documentElement;
+    const isDark = root.classList.contains("dark");
+    const currentTheme: Theme = isDark ? "dark" : "light";
+    setTheme(currentTheme);
   }, []);
 
   const toggleTheme = () => {

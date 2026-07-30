@@ -1,14 +1,26 @@
 "use client";
 
-import { useEffect, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export default function CursorEffects() {
+  const rafRef = useRef<number | null>(null);
+  const pendingRef = useRef<{ x: number; y: number } | null>(null);
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    const glow = document.getElementById("cursor-glow");
-    if (glow) {
-      glow.style.left = `${e.clientX}px`;
-      glow.style.top = `${e.clientY}px`;
-    }
+    pendingRef.current = { x: e.clientX, y: e.clientY };
+    if (rafRef.current !== null) return;
+
+    rafRef.current = window.requestAnimationFrame(() => {
+      rafRef.current = null;
+      const pos = pendingRef.current;
+      if (!pos) return;
+
+      const glow = document.getElementById("cursor-glow");
+      if (glow) {
+        glow.style.left = `${pos.x}px`;
+        glow.style.top = `${pos.y}px`;
+      }
+    });
   }, []);
 
   const handleClick = useCallback((e: MouseEvent) => {
@@ -31,18 +43,20 @@ export default function CursorEffects() {
   }, []);
 
   useEffect(() => {
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (prefersReducedMotion) return;
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("click", handleClick);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
+      if (rafRef.current !== null) {
+        window.cancelAnimationFrame(rafRef.current);
+      }
     };
   }, [handleMouseMove, handleClick]);
 

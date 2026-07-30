@@ -53,7 +53,7 @@ const itemVariants = {
 
 export default function AquaFooter() {
   return (
-    <footer className="relative pt-20 bg-[#F0F8FF] dark:bg-[#07162B] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10 overflow-hidden transition-colors duration-500">
+    <footer className="relative pt-20 bg-[#F2FAFD] dark:bg-[#07162B] text-slate-900 dark:text-white border-t border-slate-200 dark:border-white/10 overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
         <motion.div
           variants={containerVariants}

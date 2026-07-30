@@ -23,7 +23,7 @@
   --alert-orange: #FB923C;
 
   /* Light Theme */
-  --bg-base: #F4F9FD;
+  --bg-base: #F2FAFD;
   --bg-secondary: #EAF4FC;
   --bg-card: #FFFFFF;
   --bg-card-hover: #F0F7FF;
@@ -38,7 +38,7 @@
   --glass-bg: rgba(255, 255, 255, 0.9);
   --glass-bg-strong: rgba(255, 255, 255, 0.97);
   --glass-border: rgba(11, 79, 140, 0.12);
-  --nav-bg: rgba(244, 249, 253, 0.88);
+  --nav-bg: rgba(242, 250, 253, 0.88);
 }
 
 html.dark, body.dark {
@@ -74,7 +74,27 @@ html.dark, body.dark {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -121,4 +141,67 @@ body {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--glass-border);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-flow {
+  background-size: 200% auto;
+  animation: gradientFlow 6s ease infinite;
+}
+
+/* Wave background — CSS-only (GPU-friendly, no JS animation loop) */
+@keyframes wave-float-up {
+  0% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(var(--bubble-x, 8px), -62vh, 0); }
+  100% { transform: translate3d(0, -125vh, 0); }
+}
+
+@keyframes wave-dust-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.1; }
+  50% { transform: translate3d(var(--dust-x, 6px), -40px, 0); opacity: 0.2; }
+}
+
+@keyframes wave-sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-1.5%); }
+}
+
+.wave-bubble {
+  --bubble-x: 8px;
+  animation: wave-float-up linear infinite;
+  will-change: transform;
+}
+
+.wave-dust {
+  animation: wave-dust-drift ease-in-out infinite;
+}
+
+.wave-sway {
+  animation: wave-sway 16s ease-in-out infinite;
+}
+
+.wave-sway-reverse {
+  animation: wave-sway 12s ease-in-out infinite reverse;
+}
+
+.wave-paused .wave-bubble,
+.wave-paused .wave-dust,
+.wave-paused .wave-sway,
+.wave-paused .wave-sway-reverse {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bubble,
+  .wave-dust,
+  .wave-sway,
+  .wave-sway-reverse,
+  .animate-gradient-flow {
+    animation: none !important;
+  }
 }
