@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { AlertTriangle, CheckCircle, Radio, AlertCircle, ShieldAlert, Cpu, Sparkles, MapPin, Clock, CloudRain, Activity, Thermometer, Droplets, Check, CheckCircle2, Biohazard, ArrowUpRight, TrendingUp } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Radio, AlertCircle, ShieldAlert, Cpu, Sparkles, MapPin, Clock, CloudRain, Activity, Thermometer, Droplets, Check, CheckCircle2, Biohazard, ArrowUpRight, TrendingUp, FlaskConical } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 const MapComponent = dynamic(() => import('./MapComponent'), {
@@ -391,75 +391,75 @@ export default function DashboardPreview() {
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Disease Outbreak Probability Cards (Col 7) */}
-              <div className="lg:col-span-7 bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col justify-between">
+              <div className="lg:col-span-7 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_12px_40px_rgba(0,194,209,0.08)] flex flex-col justify-between">
                 <div>
                   {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-200 dark:border-slate-800">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-200/60 dark:border-slate-800/60">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-[#00C2D1]/15 border border-[#00C2D1]/30 flex items-center justify-center text-[#00C2D1]">
                         <Sparkles className="w-5 h-5" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-medium font-outfit text-slate-900 dark:text-white tracking-tight">
+                        <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white tracking-tight">
                           AI Disease Outbreak Prediction
                         </h3>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 font-sans">Multi-pathogen predictive risk model</p>
+                        <p className="text-xs font-medium text-slate-400 dark:text-slate-500 font-sans">Multi-pathogen predictive risk model</p>
                       </div>
                     </div>
 
                     <div className="text-left sm:text-right font-sans">
-                      <span className="text-xs font-semibold text-slate-900 dark:text-white font-outfit block">AI Prediction Engine</span>
-                      <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Updated 18s ago • Model Confidence: 96%</span>
+                      <span className="text-xs font-semibold text-slate-900 dark:text-white font-sans block">AI Prediction Engine</span>
+                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">Updated 18s ago • Model Confidence: 96%</span>
                     </div>
                   </div>
 
-                  {/* Multi-Line Enterprise Cards */}
-                  <div className="space-y-4 font-sans">
+                  {/* Multi-Line Enterprise Cards — Only 1 Highlighted Card */}
+                  <div className="space-y-3.5 font-sans">
                     {diseasePredictions.map((d) => {
                       const IconComponent = d.icon;
                       return (
                         <div 
                           key={d.id} 
-                          className={`p-5 rounded-[18px] border transition-all duration-250 hover:-translate-y-1 hover:shadow-md cursor-pointer ${
+                          className={`p-4.5 rounded-[16px] border transition-all duration-250 hover:-translate-y-0.5 cursor-pointer ${
                             d.highlight 
-                              ? 'bg-red-500/[0.03] dark:bg-red-500/[0.06] border-red-500/40 dark:border-red-500/50 shadow-sm ring-1 ring-red-500/20' 
-                              : 'bg-white dark:bg-[#0A1628]/80 border-slate-200 dark:border-slate-800/90'
+                              ? 'bg-red-500/[0.04] dark:bg-red-500/[0.08] border-red-500/40 dark:border-red-500/50 shadow-sm ring-1 ring-red-500/20' 
+                              : 'bg-white/80 dark:bg-[#0A1628]/80 border-slate-200/60 dark:border-slate-800/60 hover:border-slate-300 dark:hover:border-slate-700'
                           }`}
                         >
                           {/* Card Top Row: Icon + Disease Name & Status Capsule Badge */}
-                          <div className="flex items-center justify-between gap-3 mb-3">
+                          <div className="flex items-center justify-between gap-3 mb-2">
                             <div className="flex items-center gap-3">
                               <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                                d.highlight ? 'bg-red-500/15 text-red-500' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'
+                                d.highlight ? 'bg-red-500/15 text-red-500' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
                               }`}>
-                                <IconComponent className="w-4.5 h-4.5" strokeWidth={2} />
+                                <IconComponent className="w-4 h-4" strokeWidth={2} />
                               </div>
                               <span className="text-[17px] font-semibold text-slate-900 dark:text-white font-sans tracking-tight">
                                 {d.name}
                               </span>
                             </div>
 
-                            <span className={`text-xs font-bold px-3 py-1 rounded-full border tracking-wide uppercase font-outfit ${d.badgeClass}`}>
+                            <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border tracking-wide uppercase font-sans ${d.badgeClass}`}>
                               {d.risk}
                             </span>
                           </div>
 
                           {/* Card Middle Row: Predicted Probability Label + Percentage */}
-                          <div className="flex items-end justify-between gap-4 mb-2.5">
+                          <div className="flex items-end justify-between gap-4 mb-2">
                             <div>
-                              <span className="text-xs font-medium text-slate-500 dark:text-slate-400 block mb-0.5">Predicted Probability</span>
-                              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 font-mono">
-                                Trend <span className={d.highlight ? 'text-red-500 font-bold' : 'text-slate-500'}>{d.trend}</span>
+                              <span className="text-xs font-medium text-slate-400 dark:text-slate-500 block mb-0.5">Predicted Probability</span>
+                              <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                                Trend <span className={d.highlight ? 'text-red-500 font-bold' : 'text-slate-400'}>{d.trend}</span>
                               </span>
                             </div>
 
-                            <div className="text-3xl font-extrabold font-mono tabular-nums text-slate-900 dark:text-white tracking-tight">
+                            <div className="text-[32px] font-bold font-mono tabular-nums text-slate-900 dark:text-white tracking-tight">
                               {d.prob}%
                             </div>
                           </div>
 
                           {/* Progress Bar */}
-                          <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mb-2">
+                          <div className="w-full h-1.5 bg-slate-200/80 dark:bg-slate-800 rounded-full overflow-hidden mb-1.5">
                             <motion.div 
                               className={`h-full bg-gradient-to-r ${d.color} rounded-full`}
                               initial={{ width: 0 }}
@@ -469,9 +469,9 @@ export default function DashboardPreview() {
                           </div>
 
                           {/* Bottom Meta Row */}
-                          <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-mono pt-1">
-                            <span>Confidence Score: {d.confidence}</span>
-                            <span>Forecast Window: 48 Hours</span>
+                          <div className="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 font-mono pt-1">
+                            <span>Confidence: {d.confidence}</span>
+                            <span>Window: 48 Hours</span>
                           </div>
                         </div>
                       );
@@ -483,43 +483,54 @@ export default function DashboardPreview() {
               {/* AI Explanation & Recommended Actions (Col 5) */}
               <div className="lg:col-span-5 flex flex-col gap-6">
                 
-                {/* AI Explanation Panel */}
-                <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 border border-slate-200 dark:border-slate-800 shadow-lg">
+                {/* Explainable AI Reasoning Panel */}
+                <div className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
                   <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-lg font-medium font-outfit text-slate-900 dark:text-white">Why did AI predict this?</h4>
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 text-xs font-semibold">Confidence 96%</span>
+                    <h4 className="text-[17px] font-semibold font-sans text-slate-900 dark:text-white">Why did AI predict this?</h4>
+                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-[#00C2D1] border border-cyan-500/20 text-xs font-mono">Explainable AI</span>
                   </div>
 
-                  <ul className="space-y-2.5 text-sm font-sans text-slate-700 dark:text-slate-300">
-                    {explainabilityFactors.map((factor, i) => (
-                      <li key={i} className="flex items-center gap-2.5 bg-white dark:bg-[#0A1628]/80 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        <span>{factor}</span>
+                  <ul className="space-y-2 text-xs font-sans text-slate-700 dark:text-slate-300">
+                    {[
+                      { factor: 'Turbidity increased sharply (+24% in 4h)', source: 'Sensor Network' },
+                      { factor: 'Heavy rainfall forecast (12 mm / 24h)', source: 'Weather API' },
+                      { factor: 'Dissolved Oxygen below limit (4.8 mg/L)', source: 'Sensor Network' },
+                      { factor: 'Community health reports from Sector 4', source: 'Community' },
+                      { factor: 'Historical Yamuna Basin pattern matched', source: 'AI Model' },
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center justify-between gap-2 bg-white/80 dark:bg-[#0A1628]/80 px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#00C2D1] flex-shrink-0" />
+                          <span className="text-xs text-slate-700 dark:text-slate-300">{item.factor}</span>
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                          {item.source}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Recommended Actions Panel */}
-                <div className="bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 border border-slate-200 dark:border-slate-800 shadow-lg flex-1 flex flex-col justify-between">
+                <div className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-center mb-4">
-                      <h4 className="text-lg font-medium font-outfit text-slate-900 dark:text-white">Recommended Actions</h4>
-                      <span className="px-3 py-1 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 text-xs font-semibold uppercase font-outfit">Urgency: HIGH</span>
+                      <h4 className="text-[17px] font-semibold font-sans text-slate-900 dark:text-white">Recommended Actions</h4>
+                      <span className="px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 text-xs font-semibold uppercase font-mono">Urgency: HIGH</span>
                     </div>
 
-                    <ul className="space-y-2.5 text-sm font-sans text-slate-700 dark:text-slate-300">
+                    <ul className="space-y-2 text-xs font-sans text-slate-700 dark:text-slate-300">
                       {recommendedActions.map((action, i) => (
-                        <li key={i} className="flex items-center gap-2.5 bg-white dark:bg-[#0A1628]/80 px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
-                          <span className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0" />
-                          <span>{action}</span>
+                        <li key={i} className="flex items-center gap-2.5 bg-white/80 dark:bg-[#0A1628]/80 px-3 py-2.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
+                          <span className="text-xs text-slate-700 dark:text-slate-300">{action}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center text-xs">
-                    <span className="text-slate-500 dark:text-slate-400 font-mono">Advisory Dispatch Ready</span>
+                  <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex justify-between items-center text-xs">
+                    <span className="text-slate-400 dark:text-slate-500 font-mono">Advisory Dispatch Ready</span>
                     <button className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#0B4F8C] to-[#00A8B5] text-white font-semibold text-xs shadow-sm hover:shadow-cyan-500/20 transition-all cursor-pointer">
                       Dispatch Advisory →
                     </button>
@@ -530,81 +541,175 @@ export default function DashboardPreview() {
 
             </div>
 
-            {/* ROW 3 — LIVE WATER PARAMETERS MATRIX & WEATHER */}
+            {/* ROW 3 — LIVE WATER PARAMETERS MATRIX & WEATHER (SIH Finalist Enterprise Edition) */}
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
-              {/* Grouped Live Water Parameters Matrix (Col 8) */}
-              <div className="lg:col-span-8 bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium font-outfit text-slate-900 dark:text-white flex items-center gap-2">
-                    <Activity className="w-4.5 h-4.5 text-[#00C2D1]" />
-                    Live Water Parameters Matrix
-                  </h3>
-                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold font-mono">14 Sensor Nodes Online</span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-                  {groupedLiveParameters.map((p) => (
-                    <div key={p.label} className="bg-white dark:bg-slate-900/80 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-all duration-200 hover:border-[#00C2D1]/40">
-                      <div>
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="text-xs font-semibold text-slate-400 font-outfit block">{p.label}</span>
-                          <span className={`text-[10px] font-semibold px-2 py-0.2 rounded-full ${
-                            p.level === 'green' ? 'text-emerald-500 bg-emerald-500/10' : p.level === 'amber' ? 'text-amber-500 bg-amber-500/10' : 'text-red-500 bg-red-500/10'
-                          }`}>{p.status}</span>
-                        </div>
-                        <div className="flex items-baseline gap-1 my-1">
-                          <span className="text-2xl font-bold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
-                            {p.num}
-                          </span>
-                          {p.unit && (
-                            <span className="text-xs font-medium font-mono text-slate-500 dark:text-slate-400">
-                              {p.unit}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <span className="text-[10px] text-slate-400 font-mono block mt-1">Updated {p.updated}</span>
+              {/* Grouped Live Water Parameters Matrix (Col 8 — 3x3 Grid, Zero Empty Space) */}
+              <div className="lg:col-span-8 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_24px_rgba(15,23,42,0.06)] dark:shadow-none flex flex-col justify-between">
+                <div>
+                  {/* Header with Animated Live Ping Status Line */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-200/60 dark:border-slate-800/60">
+                    <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
+                      <Activity className="w-5 h-5 text-[#00C2D1]" />
+                      Live Water Parameters Matrix
+                    </h3>
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 bg-white/90 dark:bg-slate-900/80 px-3.5 py-1.5 rounded-full border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      <span>Last Updated 18s ago • 14 Nodes Online</span>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Logically Grouped Parameters (3 Rows x 3 Columns = 9 Cards Total) */}
+                  <div className="space-y-6">
+                    {[
+                      {
+                        group: 'Chemical Parameters',
+                        icon: FlaskConical,
+                        items: [
+                          { label: 'pH Level', num: '7.2', unit: '', status: 'Safe', level: 'green', trend: '↗ Stable', sparkline: 'M 2 10 L 10 9 L 18 11 L 26 8 L 34 9 L 42 7' },
+                          { label: 'TDS (Solids)', num: '310', unit: 'ppm', status: 'Safe', level: 'green', trend: '→ Stable', sparkline: 'M 2 8 L 10 8 L 18 9 L 26 8 L 34 8 L 42 8' },
+                          { label: 'Conductivity', num: '420', unit: 'µS/cm', status: 'Safe', level: 'green', trend: '↗ Stable', sparkline: 'M 2 12 L 10 10 L 18 9 L 26 8 L 34 7 L 42 6' },
+                        ]
+                      },
+                      {
+                        group: 'Physical Parameters',
+                        icon: Thermometer,
+                        items: [
+                          { label: 'Temperature', num: '24.8', unit: '°C', status: 'Safe', level: 'green', trend: '→ Stable', sparkline: 'M 2 8 L 10 9 L 18 8 L 26 8 L 34 9 L 42 8' },
+                          { label: 'Turbidity', num: '8.4', unit: 'NTU', status: 'Moderate', level: 'amber', trend: '↑ +24%', sparkline: 'M 2 12 L 10 11 L 18 9 L 26 6 L 34 4 L 42 2' },
+                          { label: 'Water Level', num: '2.8', unit: 'm', status: 'Safe', level: 'green', trend: '↓ Falling', sparkline: 'M 2 4 L 10 5 L 18 7 L 26 9 L 34 11 L 42 12' },
+                        ]
+                      },
+                      {
+                        group: 'Biological & Sensor Parameters',
+                        icon: Biohazard,
+                        items: [
+                          { label: 'Dissolved Oxygen', num: '4.8', unit: 'mg/L', status: 'High Risk', level: 'red', trend: '↓ -12%', sparkline: 'M 2 4 L 10 6 L 18 8 L 26 10 L 34 12 L 42 14' },
+                          { label: 'ORP (Redox)', num: '345', unit: 'mV', status: 'Safe', level: 'green', trend: '↗ +15 mV', sparkline: 'M 2 12 L 10 10 L 18 8 L 26 7 L 34 6 L 42 5' },
+                          { label: 'Sensor Network', num: '14/14', unit: 'nodes', status: 'Healthy', level: 'green', trend: '● 100% Online', sparkline: 'M 2 8 L 10 8 L 18 8 L 26 8 L 34 8 L 42 8' },
+                        ]
+                      }
+                    ].map((category) => {
+                      const CategoryIcon = category.icon;
+                      return (
+                        <div key={category.group}>
+                          <div className="flex items-center gap-2 mb-3">
+                            <CategoryIcon className="w-4 h-4 text-[#00C2D1]" />
+                            <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 font-sans uppercase tracking-wider">
+                              {category.group}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                            {category.items.map((p) => (
+                              <div 
+                                key={p.label} 
+                                className={`p-4 rounded-[18px] border transition-all duration-200 flex flex-col justify-between cursor-pointer ${
+                                  p.level === 'red'
+                                    ? 'bg-red-500/[0.04] dark:bg-red-500/[0.08] border-red-500/30 hover:border-red-500/50 shadow-sm'
+                                    : p.level === 'amber'
+                                    ? 'bg-amber-500/[0.04] dark:bg-amber-500/[0.08] border-amber-500/30 hover:border-amber-500/50 shadow-sm'
+                                    : 'bg-white/90 dark:bg-slate-900/80 border-slate-200/60 dark:border-slate-800/60 hover:border-[#00C2D1]/40 hover:shadow-[0_8px_24px_rgba(0,194,209,0.1)]'
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex justify-between items-center mb-1.5">
+                                    <span className="text-xs font-medium text-slate-500 dark:text-slate-400 font-sans">{p.label}</span>
+                                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+                                      p.level === 'green' ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : p.level === 'amber' ? 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20'
+                                    }`}>{p.status}</span>
+                                  </div>
+
+                                  <div className="flex items-baseline gap-1.5 my-1">
+                                    <span className="text-[30px] font-bold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                                      {p.num}
+                                    </span>
+                                    {p.unit && (
+                                      <span className="text-[13px] font-medium font-mono text-slate-400 dark:text-slate-500">
+                                        {p.unit}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* Tiny Trend Sparkline Indicator */}
+                                <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-2 pt-2 border-t border-slate-200/40 dark:border-slate-800/40">
+                                  <span className={`font-semibold ${
+                                    p.level === 'red' ? 'text-red-500' : p.level === 'amber' ? 'text-amber-500' : 'text-slate-600 dark:text-slate-300'
+                                  }`}>{p.trend}</span>
+                                  {/* Micro SVG Sparkline */}
+                                  <svg className="w-11 h-4" viewBox="0 0 44 16">
+                                    <path d={p.sparkline} fill="none" stroke={p.level === 'red' ? '#EF4444' : p.level === 'amber' ? '#F59E0B' : '#00C2D1'} strokeWidth="1.8" strokeLinecap="round" />
+                                  </svg>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
-              {/* Live Weather Panel (Col 4) */}
-              <div className="lg:col-span-4 bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col justify-between">
+              {/* Live Weather Context Panel (Refined Title Hierarchy & Weather Micro-Trends) */}
+              <div className="lg:col-span-4 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_24px_rgba(15,23,42,0.06)] dark:shadow-none flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-lg font-medium font-outfit text-slate-900 dark:text-white flex items-center gap-2">
+                  <div className="flex justify-between items-center mb-5 pb-4 border-b border-slate-200/60 dark:border-slate-800/60">
+                    <h4 className="text-base font-semibold font-display text-slate-800 dark:text-slate-200 flex items-center gap-2">
                       <CloudRain className="w-4.5 h-4.5 text-[#00C2D1]" />
                       Weather Context
-                    </h3>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Live API</span>
+                    </h4>
+                    <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">Live API</span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 text-sm font-sans mb-3">
+                  {/* 8-Metric Weather Grid with Micro-Trends */}
+                  <div className="grid grid-cols-2 gap-3 text-sm font-sans mb-5">
                     {[
-                      { label: 'Temperature', num: '28', unit: '°C' },
-                      { label: 'Humidity', num: '82', unit: '%' },
-                      { label: 'Rainfall', num: '12', unit: 'mm', isHighlight: true },
-                      { label: 'Wind', num: '18', unit: 'km/h' },
+                      { label: 'Temperature', num: '28', unit: '°C', sub: '▲ +1.2°C today' },
+                      { label: 'Humidity', num: '82', unit: '%', sub: '▼ -3%' },
+                      { label: 'Rainfall (24h)', num: '12', unit: 'mm', sub: 'Last 24h', isHighlight: true },
+                      { label: 'Wind Speed', num: '18', unit: 'km/h', sub: 'NE Direction' },
+                      { label: 'Air Quality', num: '42', unit: 'AQI', sub: 'Good · Low Risk' },
+                      { label: 'Pressure', num: '1013', unit: 'hPa', sub: '→ Stable' },
+                      { label: 'UV Index', num: '6', unit: 'High', sub: '▲ Peak at 2 PM' },
+                      { label: 'Cloud Cover', num: '75', unit: '%', sub: '▲ +5%' },
                     ].map((item) => (
-                      <div key={item.label} className="bg-white dark:bg-slate-900/80 p-3 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
-                        <span className="text-slate-500 dark:text-slate-400 text-xs block">{item.label}</span>
-                        <div className="flex items-baseline gap-1 my-1">
-                          <span className={`text-2xl font-bold font-mono tracking-tight tabular-nums ${item.isHighlight ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-900 dark:text-white'}`}>
+                      <div key={item.label} className="bg-white/90 dark:bg-slate-900/80 p-3 rounded-[14px] border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between hover:border-cyan-400/30 transition-colors">
+                        <span className="text-slate-400 dark:text-slate-500 text-[11px] font-sans block">{item.label}</span>
+                        <div className="flex items-baseline gap-1 my-0.5">
+                          <span className={`text-[22px] font-bold font-mono tracking-tight tabular-nums ${item.isHighlight ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-900 dark:text-white'}`}>
                             {item.num}
                           </span>
-                          <span className="text-xs font-medium font-mono text-slate-500 dark:text-slate-400">
+                          <span className="text-[11px] font-medium font-mono text-slate-400 dark:text-slate-500">
                             {item.unit}
                           </span>
                         </div>
+                        <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 block mt-0.5">{item.sub}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs font-semibold text-amber-600 dark:text-amber-400 text-center font-sans">
-                  Forecast: Heavy Rain Expected Tonight
+                {/* Refined Forecast Alert Insight Panel tied to AI Risk Engine */}
+                <div className="p-4 rounded-[16px] bg-amber-500/[0.06] dark:bg-amber-500/[0.1] border border-amber-500/30 text-xs font-sans space-y-1.5">
+                  <div className="flex items-center justify-between font-semibold text-amber-600 dark:text-amber-400">
+                    <span className="flex items-center gap-1.5 uppercase tracking-wider text-[11px] font-outfit">
+                      <AlertTriangle className="w-3.5 h-3.5" /> Forecast Alert
+                    </span>
+                    <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30">
+                      AI Confidence: 94%
+                    </span>
+                  </div>
+                  <p className="text-slate-800 dark:text-slate-200 font-semibold leading-snug">
+                    Heavy rainfall expected tonight (12 mm / 24h).
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">
+                    AI predicts a <strong className="text-amber-600 dark:text-amber-400 font-semibold">moderate increase in contamination probability</strong> due to expected catchment surface runoff.
+                  </p>
                 </div>
               </div>
 
@@ -619,15 +724,15 @@ export default function DashboardPreview() {
               </div>
 
               {/* 7-Day Trend Analytics with Metric Selector (Col 5) */}
-              <div className="lg:col-span-5 bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg flex flex-col justify-between">
+              <div className="lg:col-span-5 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-lg font-medium font-outfit text-slate-900 dark:text-white">Trend Analytics</h3>
-                    <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Last 7 Days</span>
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white">Trend Analytics</h3>
+                    <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">Last 7 Days</span>
                   </div>
 
                   {/* Metric Tab Selector */}
-                  <div className="flex items-center gap-1.5 mb-4 bg-white dark:bg-slate-900/80 p-1 rounded-xl border border-slate-200 dark:border-slate-800 text-xs">
+                  <div className="flex items-center gap-1.5 mb-4 bg-white/80 dark:bg-slate-900/80 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/60 text-xs">
                     {(['pH', 'Turbidity', 'Temp', 'WQI', 'Risk'] as const).map((tab) => (
                       <button
                         key={tab}
@@ -664,7 +769,7 @@ export default function DashboardPreview() {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center text-xs text-slate-600 dark:text-slate-300 pt-3 border-t border-slate-200 dark:border-slate-800 font-sans">
+                <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 font-sans">
                   <span>{activeTrendTab} trend tracking active</span>
                   <span className="text-[#00C2D1] font-semibold">7-Day Animated Curve</span>
                 </div>
@@ -676,10 +781,10 @@ export default function DashboardPreview() {
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Recent Alerts Timeline Cards (Col 12) */}
-              <div className="col-span-12 bg-slate-50 dark:bg-[#132338]/90 backdrop-blur-xl rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-lg">
+              <div className="col-span-12 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-medium font-outfit text-slate-900 dark:text-white flex items-center gap-2">
-                    <Clock className="w-4.5 h-4.5 text-[#00C2D1]" />
+                  <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
+                    <Clock className="w-5 h-5 text-[#00C2D1]" />
                     Recent Alerts Timeline
                   </h3>
                   <span className="text-xs text-[#00C2D1] font-semibold cursor-pointer hover:underline font-sans">Full Audit Log →</span>
@@ -687,15 +792,15 @@ export default function DashboardPreview() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                   {recentTimelineAlerts.map((item, idx) => (
-                    <div key={idx} className="bg-white dark:bg-slate-900/80 p-4.5 rounded-xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between transition-all duration-250 hover:-translate-y-1 hover:shadow-lg cursor-pointer">
+                    <div key={idx} className="bg-white/80 dark:bg-slate-900/80 p-4.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between transition-all duration-250 hover:-translate-y-0.5 hover:shadow-sm cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-mono text-xs font-bold text-[#00C2D1]">{item.time}</span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                           item.level === 'red' ? 'bg-red-500/15 text-red-500 border-red-500/30' : item.level === 'amber' ? 'bg-amber-500/15 text-amber-500 border-amber-500/30' : 'bg-cyan-500/15 text-cyan-500 border-cyan-500/30'
                         }`}>{item.badge}</span>
                       </div>
-                      <h5 className="font-outfit font-medium text-xs text-slate-900 dark:text-white">{item.text}</h5>
-                      <span className="text-[11px] text-slate-500 dark:text-slate-400 font-sans mt-1">{item.detail}</span>
+                      <h5 className="font-sans font-semibold text-xs text-slate-900 dark:text-white">{item.text}</h5>
+                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-sans mt-1">{item.detail}</span>
                     </div>
                   ))}
                 </div>
@@ -704,22 +809,22 @@ export default function DashboardPreview() {
             </div>
 
             {/* FOOTER STATUS BAR */}
-            <div className="col-span-12 pt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-sans">
-              <div className="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1 font-outfit">Total Monitoring Stations</span>
-                <span className="text-2xl font-semibold text-slate-900 dark:text-white font-outfit tabular-nums">1,240</span>
+            <div className="col-span-12 pt-6 border-t border-slate-200/60 dark:border-slate-800/60 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-sans">
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Total Monitoring Stations</span>
+                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,240</span>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1 font-outfit">Data Points Today</span>
-                <span className="text-2xl font-semibold text-slate-900 dark:text-white font-outfit tabular-nums">8.6 Million</span>
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Data Points Today</span>
+                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">8.6 Million</span>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1 font-outfit">Predictions Generated</span>
-                <span className="text-2xl font-semibold text-slate-900 dark:text-white font-outfit tabular-nums">1,423</span>
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Predictions Generated</span>
+                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,423</span>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1 font-outfit">Average Response Time</span>
-                <span className="text-2xl font-semibold text-slate-900 dark:text-white font-outfit tabular-nums">1.8 Seconds</span>
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Average Response Time</span>
+                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1.8 Seconds</span>
               </div>
             </div>
 
