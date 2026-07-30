@@ -80,17 +80,17 @@ export default function AquaNavbar() {
       }`}
       style={{
         background: isScrolled
-          ? theme === 'dark' ? 'rgba(7, 22, 43, 0.85)' : 'rgba(244, 249, 253, 0.88)'
-          : 'transparent',
-        backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
+          ? theme === 'dark' ? 'rgba(7, 22, 43, 0.78)' : 'rgba(242, 250, 253, 0.82)'
+          : 'rgba(255, 255, 255, 0.05)',
+        backdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(12px) saturate(140%)',
+        WebkitBackdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(12px) saturate(140%)',
         borderBottom: isScrolled
-          ? theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid rgba(11, 79, 140, 0.12)'
-          : '1px solid transparent',
+          ? theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(255, 255, 255, 0.4)'
+          : '1px solid rgba(255, 255, 255, 0.25)',
       }}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center transition-all duration-300" style={{ height: isScrolled ? '68px' : '78px' }}>
+        <div className="flex justify-between items-center transition-all duration-300" style={{ height: isScrolled ? '64px' : '74px' }}>
           {/* Logo */}
           <div
             className="flex-shrink-0 flex items-center gap-2.5 cursor-pointer group"

@@ -195,14 +195,18 @@ export default function DashboardPreview() {
           </motion.p>
         </div>
 
-        {/* Master Stable Dashboard Container — NO rotation or tilt */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative bg-white/95 dark:bg-[#0F2035]/95 backdrop-blur-[20px] rounded-[28px] p-6 sm:p-8 border border-slate-200 dark:border-slate-700/80 shadow-2xl dark:shadow-[0_30px_90px_-20px_rgba(0,0,0,0.8)] overflow-hidden"
-        >
+        {/* Master Stable Dashboard Container (Requirement 4: Soft elevation, cyan ambient glow, atmospheric blur) */}
+        <div className="relative">
+          {/* Soft Atmospheric Blur & Cyan Glow Underneath */}
+          <div className="absolute -inset-4 bg-gradient-to-b from-[#00C2D1]/12 via-[#00C2D1]/5 to-transparent rounded-[36px] blur-[45px] pointer-events-none -z-10" />
+
+          <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative bg-white/95 dark:bg-[#0F2035]/95 backdrop-blur-[20px] rounded-[28px] p-6 sm:p-8 border border-slate-200/80 dark:border-slate-700/80 shadow-[0_20px_50px_rgba(7,22,43,0.08),0_8px_20px_rgba(0,194,209,0.06)] dark:shadow-[0_30px_90px_-20px_rgba(0,0,0,0.85),0_15px_35px_-10px_rgba(0,194,209,0.12)] overflow-hidden"
+          >
           {/* HEADER */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-3.5">
@@ -241,14 +245,13 @@ export default function DashboardPreview() {
           {/* 12-Column Grid Layout */}
           <div className="grid grid-cols-12 gap-6 relative z-10">
             
-            {/* ROW 1 — EXECUTIVE SUMMARY (4 Cards) */}
-            {/* ROW 1 — EXECUTIVE SUMMARY (4 Refined Stat Cards) */}
+            {/* ROW 1 — EXECUTIVE SUMMARY (4 Refined Stat Cards with Border-Radius Hierarchy) */}
             <div className="col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               
-              {/* Card 1: Water Quality Index */}
-              <AnimatedCard className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+              {/* Card 1: Water Quality Index (Safe 2% Tint) */}
+              <AnimatedCard className="bg-emerald-500/[0.015] dark:bg-emerald-500/[0.04] backdrop-blur-xl p-5 sm:p-6 rounded-[20px] border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.05)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:scale-[1.01] hover:border-[#00C2D1]/50 hover:shadow-[0_14px_40px_-5px_rgba(0,194,209,0.14)] transition-all duration-250 ease-out flex flex-col justify-between cursor-pointer group">
                 {/* Tier 1: Top Label & Minimal Outline Icon */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
                     Water Quality Index
                   </span>
@@ -258,7 +261,7 @@ export default function DashboardPreview() {
                 {/* Tier 2: Hero Number + Thick Semicircular Arc Gauge */}
                 <div className="flex items-end justify-between my-2">
                   <div>
-                    <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                    <div className="text-3xl sm:text-[36px] font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
                       82
                     </div>
                   </div>
@@ -288,25 +291,25 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* Tier 3: Muted Subtext */}
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 block">
                   Status: Good · 100 max scale
                 </span>
               </AnimatedCard>
 
-              {/* Card 2: AI Risk Score */}
-              <AnimatedCard className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+              {/* Card 2: AI Risk Score (Moderate 2% Tint) */}
+              <AnimatedCard className="bg-amber-500/[0.025] dark:bg-amber-500/[0.06] backdrop-blur-xl p-5 sm:p-6 rounded-[20px] border border-amber-500/25 dark:border-amber-500/30 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.05)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:scale-[1.01] hover:border-amber-500/50 hover:shadow-[0_14px_40px_-5px_rgba(245,158,11,0.15)] transition-all duration-250 ease-out flex flex-col justify-between cursor-pointer group">
                 {/* Tier 1: Top Label & Minimal Outline Icon */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
                     AI Risk Score
                   </span>
-                  <Sparkles className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-[#00C2D1] transition-colors" />
+                  <Sparkles className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-amber-500 transition-colors" />
                 </div>
 
                 {/* Tier 2: Hero Number + Thick Semicircular Arc Gauge */}
                 <div className="flex items-end justify-between my-2">
                   <div>
-                    <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                    <div className="text-3xl sm:text-[36px] font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
                       63%
                     </div>
                   </div>
@@ -336,38 +339,38 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* Tier 3: Muted Subtext */}
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 block">
                   Status: Moderate · 96% confidence
                 </span>
               </AnimatedCard>
 
-              {/* Card 3: Active Alerts */}
-              <AnimatedCard className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+              {/* Card 3: Active Alerts (High Risk 3% Tint) */}
+              <AnimatedCard className="bg-red-500/[0.03] dark:bg-red-500/[0.07] backdrop-blur-xl p-5 sm:p-6 rounded-[20px] border border-red-500/30 dark:border-red-500/40 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.05)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:scale-[1.01] hover:border-red-500/50 hover:shadow-[0_14px_40px_-5px_rgba(239,68,68,0.15)] transition-all duration-250 ease-out flex flex-col justify-between cursor-pointer group">
                 {/* Tier 1: Top Label & Minimal Outline Icon */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
                     Active Alerts
                   </span>
-                  <AlertTriangle className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-amber-500 transition-colors" />
+                  <AlertTriangle className="w-4.5 h-4.5 text-slate-400 dark:text-slate-500 group-hover:text-red-500 transition-colors" />
                 </div>
 
                 {/* Tier 2: Hero Number */}
-                <div className="my-2">
-                  <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                <div className="my-1">
+                  <div className="text-3xl sm:text-[36px] font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
                     3
                   </div>
                 </div>
 
                 {/* Tier 3: Muted Subtext */}
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 block">
                   1 critical · 2 moderate warnings
                 </span>
               </AnimatedCard>
 
-              {/* Card 4: Live Sensors */}
-              <AnimatedCard className="bg-white/90 dark:bg-[#132338]/90 backdrop-blur-xl p-6 sm:p-7 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-cyan-400/30 transition-all duration-300 flex flex-col justify-between cursor-pointer group">
+              {/* Card 4: Live Sensors (Safe 2% Tint) */}
+              <AnimatedCard className="bg-emerald-500/[0.015] dark:bg-emerald-500/[0.04] backdrop-blur-xl p-5 sm:p-6 rounded-[20px] border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.05)] dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.5)] hover:-translate-y-1 hover:scale-[1.01] hover:border-emerald-500/50 hover:shadow-[0_14px_40px_-5px_rgba(16,185,129,0.15)] transition-all duration-250 ease-out flex flex-col justify-between cursor-pointer group">
                 {/* Tier 1: Top Label & Minimal Outline Icon */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-semibold uppercase tracking-wider font-outfit text-slate-500 dark:text-slate-400">
                     Live Sensors
                   </span>
@@ -375,14 +378,14 @@ export default function DashboardPreview() {
                 </div>
 
                 {/* Tier 2: Hero Number */}
-                <div className="my-2">
-                  <div className="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                <div className="my-1">
+                  <div className="text-3xl sm:text-[36px] font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
                     14
                   </div>
                 </div>
 
                 {/* Tier 3: Muted Subtext */}
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-2 block">
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1 block">
                   14 probes online · 1 maintenance
                 </span>
               </AnimatedCard>
@@ -393,16 +396,16 @@ export default function DashboardPreview() {
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Disease Outbreak Probability Cards (Col 7) */}
-              <AnimatedCard className="lg:col-span-7 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_12px_40px_rgba(0,194,209,0.08)] flex flex-col justify-between">
+              <AnimatedCard className="lg:col-span-7 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)] flex flex-col justify-between">
                 <div>
-                  {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 mb-6 border-b border-slate-200/60 dark:border-slate-800/60">
+                  {/* Header (Requirement 9: Icon highlight box & divider) */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-5 border-b border-slate-200/50 dark:border-slate-800/50">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#00C2D1]/15 border border-[#00C2D1]/30 flex items-center justify-center text-[#00C2D1]">
+                      <div className="w-9 h-9 rounded-xl bg-[#00C2D1]/10 border border-[#00C2D1]/25 flex items-center justify-center text-[#00C2D1]">
                         <Sparkles className="w-5 h-5" />
                       </div>
                       <div>
-                        <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white tracking-tight">
+                        <h3 className="text-[20px] sm:text-[22px] font-bold font-display text-slate-900 dark:text-white tracking-tight">
                           AI Disease Outbreak Prediction
                         </h3>
                         <p className="text-xs font-medium text-slate-400 dark:text-slate-500 font-sans">Multi-pathogen predictive risk model</p>
@@ -415,17 +418,17 @@ export default function DashboardPreview() {
                     </div>
                   </div>
 
-                  {/* Multi-Line Enterprise Cards — Only 1 Highlighted Card */}
+                  {/* Multi-Line Enterprise Cards */}
                   <div className="space-y-3.5 font-sans">
                     {diseasePredictions.map((d) => {
                       const IconComponent = d.icon;
                       return (
                         <AnimatedCard 
                           key={d.id} 
-                          className={`p-4.5 rounded-[16px] border transition-all duration-250 hover:-translate-y-0.5 cursor-pointer ${
+                          className={`p-4.5 rounded-[18px] border transition-all duration-250 hover:-translate-y-1 hover:scale-[1.005] cursor-pointer ${
                             d.highlight 
-                              ? 'bg-red-500/[0.04] dark:bg-red-500/[0.08] border-red-500/40 dark:border-red-500/50 shadow-sm ring-1 ring-red-500/20' 
-                              : 'bg-white/80 dark:bg-[#0A1628]/80 border-slate-200/60 dark:border-slate-800/60 hover:border-slate-300 dark:hover:border-slate-700'
+                              ? 'bg-red-500/[0.03] dark:bg-red-500/[0.07] border-red-500/30 dark:border-red-500/40 shadow-sm' 
+                              : 'bg-white/80 dark:bg-[#0A1628]/80 border-slate-200/50 dark:border-slate-800/50 hover:border-[#00C2D1]/40 hover:shadow-[0_8px_20px_rgba(0,194,209,0.1)]'
                           }`}
                         >
                           {/* Card Top Row: Icon + Disease Name & Status Capsule Badge */}
@@ -436,12 +439,13 @@ export default function DashboardPreview() {
                               }`}>
                                 <IconComponent className="w-4 h-4" strokeWidth={2} />
                               </div>
-                              <span className="text-[17px] font-semibold text-slate-900 dark:text-white font-sans tracking-tight">
+                              <span className="text-[16px] font-semibold text-slate-900 dark:text-white font-sans tracking-tight">
                                 {d.name}
                               </span>
                             </div>
 
-                            <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border tracking-wide uppercase font-sans ${d.badgeClass}`}>
+                            {/* Softer Enterprise Status Badge (Req 8) */}
+                            <span className={`text-[10px] font-semibold px-3 py-0.5 rounded-full border tracking-wide uppercase font-sans ${d.badgeClass}`}>
                               {d.risk}
                             </span>
                           </div>
@@ -455,7 +459,7 @@ export default function DashboardPreview() {
                               </span>
                             </div>
 
-                            <div className="text-[32px] font-bold font-mono tabular-nums text-slate-900 dark:text-white tracking-tight">
+                            <div className="text-[30px] font-bold font-mono tabular-nums text-slate-900 dark:text-white tracking-tight">
                               {d.prob}%
                             </div>
                           </div>
@@ -486,10 +490,10 @@ export default function DashboardPreview() {
               <div className="lg:col-span-5 flex flex-col gap-6">
                 
                 {/* Explainable AI Reasoning Panel */}
-                <AnimatedCard className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
-                  <div className="flex justify-between items-center mb-4">
-                    <h4 className="text-[17px] font-semibold font-sans text-slate-900 dark:text-white">Why did AI predict this?</h4>
-                    <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-[#00C2D1] border border-cyan-500/20 text-xs font-mono">Explainable AI</span>
+                <AnimatedCard className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)]">
+                  <div className="flex justify-between items-center mb-4 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                    <h4 className="text-[17px] font-bold font-sans text-slate-900 dark:text-white">Why did AI predict this?</h4>
+                    <span className="px-3 py-0.5 rounded-full bg-cyan-500/10 text-[#00C2D1] border border-cyan-500/20 text-xs font-mono">Explainable AI</span>
                   </div>
 
                   <ul className="space-y-2 text-xs font-sans text-slate-700 dark:text-slate-300">
@@ -500,12 +504,12 @@ export default function DashboardPreview() {
                       { factor: 'Community health reports from Sector 4', source: 'Community' },
                       { factor: 'Historical Yamuna Basin pattern matched', source: 'AI Model' },
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center justify-between gap-2 bg-white/80 dark:bg-[#0A1628]/80 px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                      <li key={i} className="flex items-center justify-between gap-2 bg-white/80 dark:bg-[#0A1628]/80 px-3.5 py-2.5 rounded-[14px] border border-slate-200/50 dark:border-slate-800/50">
                         <div className="flex items-center gap-2">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#00C2D1] flex-shrink-0" />
                           <span className="text-xs text-slate-700 dark:text-slate-300">{item.factor}</span>
                         </div>
-                        <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                        <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md border border-slate-200/60 dark:border-slate-700/60 whitespace-nowrap">
                           {item.source}
                         </span>
                       </li>
@@ -514,16 +518,16 @@ export default function DashboardPreview() {
                 </AnimatedCard>
 
                 {/* Recommended Actions Panel */}
-                <AnimatedCard className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm flex-1 flex flex-col justify-between">
+                <AnimatedCard className="bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)] flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex justify-between items-center mb-4">
-                      <h4 className="text-[17px] font-semibold font-sans text-slate-900 dark:text-white">Recommended Actions</h4>
-                      <span className="px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30 text-xs font-semibold uppercase font-mono">Urgency: HIGH</span>
+                    <div className="flex justify-between items-center mb-4 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                      <h4 className="text-[17px] font-bold font-sans text-slate-900 dark:text-white">Recommended Actions</h4>
+                      <span className="px-3 py-0.5 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20 text-xs font-semibold uppercase font-mono">Urgency: HIGH</span>
                     </div>
 
                     <ul className="space-y-2 text-xs font-sans text-slate-700 dark:text-slate-300">
                       {recommendedActions.map((action, i) => (
-                        <li key={i} className="flex items-center gap-2.5 bg-white/80 dark:bg-[#0A1628]/80 px-3 py-2.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+                        <li key={i} className="flex items-center gap-2.5 bg-white/80 dark:bg-[#0A1628]/80 px-3.5 py-2.5 rounded-[14px] border border-slate-200/50 dark:border-slate-800/50">
                           <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
                           <span className="text-xs text-slate-700 dark:text-slate-300">{action}</span>
                         </li>
@@ -531,9 +535,9 @@ export default function DashboardPreview() {
                     </ul>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex justify-between items-center text-xs">
+                  <div className="mt-4 pt-3 border-t border-slate-200/50 dark:border-slate-800/50 flex justify-between items-center text-xs">
                     <span className="text-slate-400 dark:text-slate-500 font-mono">Advisory Dispatch Ready</span>
-                    <button className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#0B4F8C] to-[#00A8B5] text-white font-semibold text-xs shadow-sm hover:shadow-cyan-500/20 transition-all cursor-pointer">
+                    <button className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#0B4F8C] to-[#00A8B5] text-white font-semibold text-xs shadow-sm hover:shadow-cyan-500/20 transition-all cursor-pointer hover:-translate-y-0.5">
                       Dispatch Advisory →
                     </button>
                   </div>
@@ -543,19 +547,23 @@ export default function DashboardPreview() {
 
             </div>
 
-            {/* ROW 3 — LIVE WATER PARAMETERS MATRIX & WEATHER (SIH Finalist Enterprise Edition) */}
+            {/* ROW 3 — LIVE WATER PARAMETERS MATRIX & WEATHER CONTEXT */}
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
-              {/* Grouped Live Water Parameters Matrix (Col 8 — 3x3 Grid, Zero Empty Space) */}
-              <AnimatedCard className="lg:col-span-8 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_24px_rgba(15,23,42,0.06)] dark:shadow-none flex flex-col justify-between">
+              {/* Grouped Live Water Parameters Matrix (Col 8) */}
+              <AnimatedCard className="lg:col-span-8 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)] flex flex-col justify-between">
                 <div>
                   {/* Header with Animated Live Ping Status Line */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-slate-200/60 dark:border-slate-800/60">
-                    <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
-                      <Activity className="w-5 h-5 text-[#00C2D1]" />
-                      Live Water Parameters Matrix
-                    </h3>
-                    <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 bg-white/90 dark:bg-slate-900/80 px-3.5 py-1.5 rounded-full border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-[#00C2D1]/10 border border-[#00C2D1]/25 flex items-center justify-center text-[#00C2D1]">
+                        <Activity className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-[20px] sm:text-[22px] font-bold font-display text-slate-900 dark:text-white">
+                        Live Water Parameters Matrix
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 bg-white/90 dark:bg-slate-900/80 px-3.5 py-1.5 rounded-full border border-slate-200/50 dark:border-slate-800/50 shadow-sm">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -586,7 +594,7 @@ export default function DashboardPreview() {
                         ]
                       },
                       {
-                        group: 'Biological & Sensor Parameters',
+                        group: 'Biological Parameters',
                         icon: Biohazard,
                         items: [
                           { label: 'Dissolved Oxygen', num: '4.8', unit: 'mg/L', status: 'High Risk', level: 'red', trend: '↓ -12%', sparkline: 'M 2 4 L 10 6 L 18 8 L 26 10 L 34 12 L 42 14' },
@@ -598,75 +606,73 @@ export default function DashboardPreview() {
                       const CategoryIcon = category.icon;
                       return (
                         <div key={category.group}>
-                          <div className="flex items-center gap-2 mb-3">
-                            <CategoryIcon className="w-4 h-4 text-[#00C2D1]" />
-                            <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 font-sans uppercase tracking-wider">
+                          {/* Requirement 9: Section Header Enhancement */}
+                          <div className="flex items-center gap-2.5 mb-3">
+                            <div className="w-7 h-7 rounded-lg bg-[#00C2D1]/10 border border-[#00C2D1]/20 flex items-center justify-center text-[#00C2D1]">
+                              <CategoryIcon className="w-4 h-4" />
+                            </div>
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-200 font-sans uppercase tracking-wider">
                               {category.group}
                             </span>
                           </div>
 
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-                            {category.items.map((p, pIdx) => {
-                              const numVal = parseFloat(p.num);
-                              const hasDecimals = p.num.includes('.');
-                              const decCount = hasDecimals ? p.num.split('.')[1].length : 0;
-                              const isNumeric = !isNaN(numVal);
+                            {category.items.map((p, pIdx) => (
+                              <AnimatedCard 
+                                key={p.label} 
+                                delay={catIdx * 0.08 + pIdx * 0.04}
+                                className={`p-4.5 rounded-[18px] border transition-all duration-250 ease-out flex flex-col justify-between cursor-pointer group hover:-translate-y-1 hover:scale-[1.01] ${
+                                  p.level === 'red'
+                                    ? 'bg-red-500/[0.03] dark:bg-red-500/[0.07] border-red-500/30 hover:border-red-500/50 shadow-sm hover:shadow-[0_12px_30px_rgba(239,68,68,0.12)]'
+                                    : p.level === 'amber'
+                                    ? 'bg-amber-500/[0.025] dark:bg-amber-500/[0.06] border-amber-500/30 hover:border-amber-500/50 shadow-sm hover:shadow-[0_12px_30px_rgba(245,158,11,0.12)]'
+                                    : 'bg-white/90 dark:bg-slate-900/80 border-slate-200/50 dark:border-slate-800/50 hover:border-[#00C2D1]/50 hover:shadow-[0_12px_30px_rgba(0,194,209,0.12)]'
+                                }`}
+                              >
+                                <div>
+                                  <div className="flex justify-between items-center mb-1.5">
+                                    <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 font-sans group-hover:text-[#00C2D1] transition-colors">{p.label}</span>
+                                    {/* Requirement 8: Softer Status Badge */}
+                                    <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${
+                                      p.level === 'green' ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : p.level === 'amber' ? 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20'
+                                    }`}>{p.status}</span>
+                                  </div>
 
-                              return (
-                                <AnimatedCard 
-                                  key={p.label} 
-                                  delay={catIdx * 0.08 + pIdx * 0.04}
-                                  className={`p-4 rounded-[18px] border transition-all duration-300 flex flex-col justify-between cursor-pointer group hover:-translate-y-1 ${
-                                    p.level === 'red'
-                                      ? 'bg-red-500/[0.04] dark:bg-red-500/[0.08] border-red-500/30 hover:border-red-500/50 shadow-sm hover:shadow-red-500/10'
-                                      : p.level === 'amber'
-                                      ? 'bg-amber-500/[0.04] dark:bg-amber-500/[0.08] border-amber-500/30 hover:border-amber-500/50 shadow-sm hover:shadow-amber-500/10'
-                                      : 'bg-white/90 dark:bg-slate-900/80 border-slate-200/60 dark:border-slate-800/60 hover:border-[#00C2D1]/50 hover:shadow-[0_8px_24px_rgba(0,194,209,0.15)]'
-                                  }`}
-                                >
-                                  <div>
-                                    <div className="flex justify-between items-center mb-1.5">
-                                      <span className="text-xs font-medium text-slate-500 dark:text-slate-400 font-sans group-hover:text-[#00C2D1] transition-colors">{p.label}</span>
-                                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
-                                        p.level === 'green' ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20' : p.level === 'amber' ? 'text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20'
-                                      }`}>{p.status}</span>
-                                    </div>
-
-                                    <div className="flex items-baseline gap-1.5 my-1">
-                                      <span className="text-[30px] font-bold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
-                                        {p.num}
+                                  {/* Requirement 4: Numbers Emphasis */}
+                                  <div className="flex items-baseline gap-1.5 my-1">
+                                    <span className="text-3xl sm:text-[34px] font-extrabold font-mono tracking-tight tabular-nums text-slate-900 dark:text-white">
+                                      {p.num}
+                                    </span>
+                                    {p.unit && (
+                                      <span className="text-xs font-medium font-mono text-slate-400 dark:text-slate-500">
+                                        {p.unit}
                                       </span>
-                                      {p.unit && (
-                                        <span className="text-[13px] font-medium font-mono text-slate-400 dark:text-slate-500">
-                                          {p.unit}
-                                        </span>
-                                      )}
-                                    </div>
+                                    )}
                                   </div>
+                                </div>
 
-                                  {/* Tiny Trend Sparkline Indicator with Animated Drawing Line */}
-                                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-2 pt-2 border-t border-slate-200/40 dark:border-slate-800/40">
-                                    <span className={`font-semibold ${
-                                      p.level === 'red' ? 'text-red-500' : p.level === 'amber' ? 'text-amber-500' : 'text-slate-600 dark:text-slate-300'
-                                    }`}>{p.trend}</span>
-                                    {/* Micro SVG Animated Sparkline */}
-                                    <svg className="w-11 h-4 overflow-visible" viewBox="0 0 44 16">
-                                      <motion.path 
-                                        d={p.sparkline} 
-                                        fill="none" 
-                                        stroke={p.level === 'red' ? '#EF4444' : p.level === 'amber' ? '#F59E0B' : '#00C2D1'} 
-                                        strokeWidth="2" 
-                                        strokeLinecap="round"
-                                        initial={{ pathLength: 0, opacity: 0 }}
-                                        whileInView={{ pathLength: 1, opacity: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1.2, delay: 0.2 + pIdx * 0.05, ease: "easeOut" }}
-                                      />
-                                    </svg>
-                                  </div>
-                                </AnimatedCard>
-                              );
-                            })}
+                                {/* Tiny Trend Sparkline Indicator */}
+                                <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-2 pt-2 border-t border-slate-200/40 dark:border-slate-800/40">
+                                  <span className={`font-semibold ${
+                                    p.level === 'red' ? 'text-red-500' : p.level === 'amber' ? 'text-amber-500' : 'text-slate-600 dark:text-slate-300'
+                                  }`}>{p.trend}</span>
+                                  {/* Micro SVG Animated Sparkline */}
+                                  <svg className="w-11 h-4 overflow-visible" viewBox="0 0 44 16">
+                                    <motion.path 
+                                      d={p.sparkline} 
+                                      fill="none" 
+                                      stroke={p.level === 'red' ? '#EF4444' : p.level === 'amber' ? '#F59E0B' : '#00C2D1'} 
+                                      strokeWidth="2" 
+                                      strokeLinecap="round"
+                                      initial={{ pathLength: 0, opacity: 0 }}
+                                      whileInView={{ pathLength: 1, opacity: 1 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 1.2, delay: 0.2 + pIdx * 0.05, ease: "easeOut" }}
+                                    />
+                                  </svg>
+                                </div>
+                              </AnimatedCard>
+                            ))}
                           </div>
                         </div>
                       );
@@ -675,12 +681,14 @@ export default function DashboardPreview() {
                 </div>
               </AnimatedCard>
 
-              {/* Live Weather Context Panel (Refined Title Hierarchy & Weather Micro-Trends) */}
-              <AnimatedCard className="lg:col-span-4 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 sm:p-7 border border-slate-200/60 dark:border-slate-800/60 shadow-[0_8px_24px_rgba(15,23,42,0.06)] dark:shadow-none flex flex-col justify-between">
+              {/* Live Weather Context Panel (Requirement 5: Card Breathing Space & Padding Polish) */}
+              <AnimatedCard className="lg:col-span-4 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)] flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-center mb-5 pb-4 border-b border-slate-200/60 dark:border-slate-800/60">
-                    <h4 className="text-base font-semibold font-display text-slate-800 dark:text-slate-200 flex items-center gap-2">
-                      <CloudRain className="w-4.5 h-4.5 text-[#00C2D1]" />
+                  <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                    <h4 className="text-[17px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-[#00C2D1]/10 border border-[#00C2D1]/20 flex items-center justify-center text-[#00C2D1]">
+                        <CloudRain className="w-4 h-4" />
+                      </div>
                       Weather Context
                     </h4>
                     <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">Live API</span>
@@ -698,7 +706,7 @@ export default function DashboardPreview() {
                       { label: 'UV Index', num: '6', unit: 'High', sub: '▲ Peak at 2 PM' },
                       { label: 'Cloud Cover', num: '75', unit: '%', sub: '▲ +5%' },
                     ].map((item) => (
-                      <div key={item.label} className="bg-white/90 dark:bg-slate-900/80 p-3 rounded-[14px] border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between hover:border-cyan-400/30 transition-colors">
+                      <div key={item.label} className="bg-white/80 dark:bg-slate-900/80 p-3 rounded-[16px] border border-slate-200/50 dark:border-slate-800/50 flex flex-col justify-between hover:border-[#00C2D1]/40 hover:-translate-y-0.5 transition-all duration-200">
                         <span className="text-slate-400 dark:text-slate-500 text-[11px] font-sans block">{item.label}</span>
                         <div className="flex items-baseline gap-1 my-0.5">
                           <span className={`text-[22px] font-bold font-mono tracking-tight tabular-nums ${item.isHighlight ? 'text-cyan-600 dark:text-cyan-400' : 'text-slate-900 dark:text-white'}`}>
@@ -714,8 +722,8 @@ export default function DashboardPreview() {
                   </div>
                 </div>
 
-                {/* Refined Forecast Alert Insight Panel tied to AI Risk Engine */}
-                <div className="p-4 rounded-[16px] bg-amber-500/[0.06] dark:bg-amber-500/[0.1] border border-amber-500/30 text-xs font-sans space-y-1.5">
+                {/* Forecast Alert Insight Panel */}
+                <div className="p-4 rounded-[18px] bg-amber-500/[0.05] dark:bg-amber-500/[0.08] border border-amber-500/25 text-xs font-sans space-y-1.5">
                   <div className="flex items-center justify-between font-semibold text-amber-600 dark:text-amber-400">
                     <span className="flex items-center gap-1.5 uppercase tracking-wider text-[11px] font-outfit">
                       <AlertTriangle className="w-3.5 h-3.5" /> Forecast Alert
@@ -734,8 +742,6 @@ export default function DashboardPreview() {
               </AnimatedCard>
 
             </div>
-
-            {/* ROW 4 — GIS MONITORING & TREND ANALYTICS */}
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Dark Interactive GIS Map (Col 7) */}
@@ -744,20 +750,25 @@ export default function DashboardPreview() {
               </AnimatedCard>
 
               {/* 7-Day Trend Analytics with Metric Selector (Col 5) */}
-              <AnimatedCard className="lg:col-span-5 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm flex flex-col justify-between">
+              <AnimatedCard className="lg:col-span-5 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)] flex flex-col justify-between">
                 <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white">Trend Analytics</h3>
+                  <div className="flex justify-between items-center mb-4 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                    <h3 className="text-[20px] sm:text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-[#00C2D1]/10 border border-[#00C2D1]/20 flex items-center justify-center text-[#00C2D1]">
+                        <Activity className="w-4 h-4" />
+                      </div>
+                      Trend Analytics
+                    </h3>
                     <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">Last 7 Days</span>
                   </div>
 
-                  {/* Metric Tab Selector */}
-                  <div className="flex items-center gap-1.5 mb-4 bg-white/80 dark:bg-slate-900/80 p-1 rounded-xl border border-slate-200/60 dark:border-slate-800/60 text-xs">
+                  {/* Metric Tab Selector (Requirement 7: Premium Pill Effect) */}
+                  <div className="flex items-center gap-1.5 mb-4 bg-white/80 dark:bg-slate-900/80 p-1.5 rounded-[14px] border border-slate-200/50 dark:border-slate-800/50 text-xs">
                     {(['pH', 'Turbidity', 'Temp', 'WQI', 'Risk'] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTrendTab(tab)}
-                        className={`flex-1 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                        className={`flex-1 py-1.5 rounded-lg font-semibold transition-all duration-200 cursor-pointer ${
                           activeTrendTab === tab
                             ? 'bg-[#00C2D1] text-white shadow-sm'
                             : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -773,14 +784,14 @@ export default function DashboardPreview() {
                       <AreaChart data={trendDataMap[activeTrendTab]} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                         <defs>
                           <linearGradient id="trendTabGrad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#00C2D1" stopOpacity={0.4}/>
+                            <stop offset="5%" stopColor="#00C2D1" stopOpacity={0.35}/>
                             <stop offset="95%" stopColor="#00C2D1" stopOpacity={0}/>
                           </linearGradient>
                         </defs>
                         <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 11 }} />
                         <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748B', fontSize: 11 }} />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'rgba(7, 22, 43, 0.95)', backdropFilter: 'blur(12px)', border: '1px solid rgba(0,194,209,0.3)', borderRadius: '12px', color: '#fff' }}
+                          contentStyle={{ backgroundColor: 'rgba(7, 22, 43, 0.95)', backdropFilter: 'blur(16px)', border: '1px solid rgba(0,194,209,0.3)', borderRadius: '14px', color: '#fff', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
                           itemStyle={{ color: '#fff' }}
                         />
                         <Area type="monotone" dataKey="val" stroke="#00C2D1" strokeWidth={3} fillOpacity={1} fill="url(#trendTabGrad)" name={activeTrendTab} />
@@ -789,7 +800,7 @@ export default function DashboardPreview() {
                   </div>
                 </div>
 
-                <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 font-sans">
+                <div className="flex justify-between items-center text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-200/50 dark:border-slate-800/50 font-sans">
                   <span>{activeTrendTab} trend tracking active</span>
                   <span className="text-[#00C2D1] font-semibold">7-Day Animated Curve</span>
                 </div>
@@ -797,30 +808,32 @@ export default function DashboardPreview() {
 
             </div>
 
-            {/* ROW 5 — RECENT ALERTS TIMELINE & FOOTER STATUS */}
+            {/* ROW 5 — RECENT ALERTS TIMELINE & FOOTER STATUS (Requirement 10: Increased Breathing Room) */}
             <div className="col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
               
               {/* Recent Alerts Timeline Cards (Col 12) */}
-              <AnimatedCard className="col-span-12 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[20px] p-6 border border-slate-200/60 dark:border-slate-800/60 shadow-sm">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
-                    <Clock className="w-5 h-5 text-[#00C2D1]" />
+              <AnimatedCard className="col-span-12 bg-[#F8FAFC] dark:bg-[#132338]/90 backdrop-blur-xl rounded-[22px] p-6 sm:p-7 border border-slate-200/50 dark:border-slate-800/50 shadow-[0_10px_30px_-5px_rgba(7,22,43,0.06)] dark:shadow-[0_12px_36px_-5px_rgba(0,0,0,0.5)]">
+                <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-200/50 dark:border-slate-800/50">
+                  <h3 className="text-[20px] sm:text-[22px] font-bold font-display text-slate-900 dark:text-white flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#00C2D1]/10 border border-[#00C2D1]/20 flex items-center justify-center text-[#00C2D1]">
+                      <Clock className="w-4 h-4" />
+                    </div>
                     Recent Alerts Timeline
                   </h3>
                   <span className="text-xs text-[#00C2D1] font-semibold cursor-pointer hover:underline font-sans">Full Audit Log →</span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
                   {recentTimelineAlerts.map((item, idx) => (
-                    <div key={idx} className="bg-white/80 dark:bg-slate-900/80 p-4.5 rounded-xl border border-slate-200/60 dark:border-slate-800/60 flex flex-col justify-between transition-all duration-250 hover:-translate-y-0.5 hover:shadow-sm cursor-pointer">
-                      <div className="flex justify-between items-center mb-2">
+                    <div key={idx} className="bg-white/80 dark:bg-slate-900/80 p-4.5 rounded-[18px] border border-slate-200/50 dark:border-slate-800/50 flex flex-col justify-between transition-all duration-250 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#00C2D1]/40 hover:shadow-[0_8px_20px_rgba(0,194,209,0.1)] cursor-pointer">
+                      <div className="flex justify-between items-center mb-2.5">
                         <span className="font-mono text-xs font-bold text-[#00C2D1]">{item.time}</span>
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                          item.level === 'red' ? 'bg-red-500/15 text-red-500 border-red-500/30' : item.level === 'amber' ? 'bg-amber-500/15 text-amber-500 border-amber-500/30' : 'bg-cyan-500/15 text-cyan-500 border-cyan-500/30'
+                        <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${
+                          item.level === 'red' ? 'bg-red-500/10 text-red-500 border-red-500/20' : item.level === 'amber' ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' : 'bg-cyan-500/10 text-cyan-500 border-cyan-500/20'
                         }`}>{item.badge}</span>
                       </div>
-                      <h5 className="font-sans font-semibold text-xs text-slate-900 dark:text-white">{item.text}</h5>
-                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-sans mt-1">{item.detail}</span>
+                      <h5 className="font-sans font-bold text-xs text-slate-900 dark:text-white leading-snug">{item.text}</h5>
+                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-sans mt-1.5 block">{item.detail}</span>
                     </div>
                   ))}
                 </div>
@@ -829,28 +842,29 @@ export default function DashboardPreview() {
             </div>
 
             {/* FOOTER STATUS BAR */}
-            <AnimatedCard className="col-span-12 pt-6 border-t border-slate-200/60 dark:border-slate-800/60 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-sans">
-              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+            <AnimatedCard className="col-span-12 pt-6 border-t border-slate-200/50 dark:border-slate-800/50 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-sans">
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-[18px] border border-slate-200/50 dark:border-slate-800/50">
                 <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Total Monitoring Stations</span>
-                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,240</span>
+                <span className="text-[24px] sm:text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,240</span>
               </div>
-              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-[18px] border border-slate-200/50 dark:border-slate-800/50">
                 <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Data Points Today</span>
-                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">8.6 Million</span>
+                <span className="text-[24px] sm:text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">8.6 Million</span>
               </div>
-              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-[18px] border border-slate-200/50 dark:border-slate-800/50">
                 <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Predictions Generated</span>
-                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,423</span>
+                <span className="text-[24px] sm:text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1,423</span>
               </div>
-              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
+              <div className="bg-[#F8FAFC] dark:bg-slate-900/60 p-4 rounded-[18px] border border-slate-200/50 dark:border-slate-800/50">
                 <span className="text-xs font-medium uppercase tracking-wider text-slate-400 block mb-1 font-sans">Average Response Time</span>
-                <span className="text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1.8 Seconds</span>
+                <span className="text-[24px] sm:text-[26px] font-bold text-slate-900 dark:text-white font-display tabular-nums">1.8 Seconds</span>
               </div>
             </AnimatedCard>
 
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }

@@ -9,24 +9,62 @@ interface WaveBackgroundProps {
   mouseY?: number;
 }
 
-const glassBubbles = Array.from({ length: 10 }, (_, i) => ({
-  id: i,
-  size: 10 + ((i * 11) % 60),
-  left: `${(i * 9.5) % 92 + 4}%`,
-  duration: 18 + (i % 12),
-  delay: (i % 6) * 1.2,
-  deltaX: (i % 2 === 0 ? 1 : -1) * (8 + (i % 18)),
-  opacity: 0.06 + (i % 3) * 0.03,
+// 3-LAYER BUBBLE SYSTEM GENERATOR
+// Layer 1: Background (20 tiny, blurred, slow particles)
+const bgBubbles = Array.from({ length: 20 }, (_, i) => ({
+  id: `bg-${i}`,
+  size: 2 + (i % 4), // 2px - 5px
+  left: `${(i * 4.9 + 2.5) % 94}%`,
+  duration: 22 + (i % 11), // 22s - 32s
+  delay: -((i % 7) * 2.5 + 0.8), // negative delays
+  deltaX: (i % 2 === 0 ? 1 : -1) * (10 + (i % 14)),
+  opacityStart: 0.08,
+  opacityMid: 0.16,
+  opacityMid2: 0.12,
+  scaleStart: 0.85,
+  scaleMid: 1.15,
+  scaleMid2: 0.9,
+  scaleEnd: 1.05,
+  blur: 2.0,
+  glow: false,
 }));
 
-const dustParticles = Array.from({ length: 15 }, (_, i) => ({
-  id: i,
-  size: 2 + (i % 4),
-  left: `${(i * 6.5) % 96 + 2}%`,
-  top: `${(i * 7.2) % 90 + 5}%`,
-  duration: 14 + (i % 10),
-  delay: (i % 8) * 0.6,
-  deltaX: (i % 2 === 0 ? 1 : -1) * (6 + (i % 10)),
+// Layer 2: Middle (15 medium particles)
+const midBubbles = Array.from({ length: 15 }, (_, i) => ({
+  id: `mid-${i}`,
+  size: 6 + (i % 5), // 6px - 10px
+  left: `${(i * 6.4 + 4.2) % 92}%`,
+  duration: 14 + (i % 9), // 14s - 22s
+  delay: -((i % 6) * 2.1 + 0.4),
+  deltaX: (i % 2 === 0 ? 1 : -1) * (12 + (i % 16)),
+  opacityStart: 0.14,
+  opacityMid: 0.32,
+  opacityMid2: 0.22,
+  scaleStart: 0.9,
+  scaleMid: 1.2,
+  scaleMid2: 0.95,
+  scaleEnd: 1.1,
+  blur: 0.8,
+  glow: false,
+}));
+
+// Layer 3: Foreground (8 glowing glass particles)
+const fgBubbles = Array.from({ length: 8 }, (_, i) => ({
+  id: `fg-${i}`,
+  size: 10 + (i % 7), // 10px - 16px
+  left: `${(i * 11.8 + 6.0) % 88}%`,
+  duration: 9 + (i % 6), // 9s - 14s
+  delay: -((i % 5) * 1.8 + 0.3),
+  deltaX: (i % 2 === 0 ? 1 : -1) * (16 + (i % 18)),
+  opacityStart: 0.3,
+  opacityMid: 0.6,
+  opacityMid2: 0.45,
+  scaleStart: 0.92,
+  scaleMid: 1.25,
+  scaleMid2: 0.96,
+  scaleEnd: 1.15,
+  blur: 0,
+  glow: true,
 }));
 
 const referenceBubbles = [
@@ -55,62 +93,129 @@ export default function WaveBackground({
       ref={ref}
       className={`absolute inset-0 overflow-hidden pointer-events-none z-0${inView ? "" : " wave-paused"}`}
     >
-      {/* LAYER 1: Base Ambient Gradient Backdrop */}
+      {/* REQUIREMENT 1: Hero Background Depth (Multi-layered radial gradients) */}
       <div 
-        className="absolute inset-0 transition-opacity duration-700 bg-[#F2FAFD] dark:bg-[#07162B] bg-[radial-gradient(circle_at_15%_25%,rgba(186,242,252,0.85)_0%,transparent_55%),radial-gradient(circle_at_85%_15%,rgba(204,245,255,0.9)_0%,transparent_50%),radial-gradient(circle_at_75%_75%,rgba(215,248,255,0.75)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_20%_25%,rgba(0,194,209,0.12)_0%,transparent_55%),radial-gradient(circle_at_80%_20%,rgba(0,194,209,0.1)_0%,transparent_55%),radial-gradient(circle_at_70%_70%,rgba(11,79,140,0.15)_0%,transparent_60%)]"
+        className="absolute inset-0 transition-opacity duration-700 bg-[#F2FAFD] dark:bg-[#07162B]"
       />
+
+      {/* Layer 1: Center Soft Brightening Radial Highlight */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.75)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_50%_25%,rgba(0,194,209,0.12)_0%,transparent_55%)]"
+      />
+
+      {/* Layer 2: Subtle Ambient Cyan Light Diffusion */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(186,242,252,0.6)_0%,transparent_50%),radial-gradient(circle_at_85%_20%,rgba(204,245,255,0.7)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_20%_25%,rgba(0,194,209,0.08)_0%,transparent_55%),radial-gradient(circle_at_80%_20%,rgba(11,79,140,0.14)_0%,transparent_55%)]"
+      />
+
+      {/* Layer 3: 2-4% Darkened Corner Vignette */}
+      <div 
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(7,22,43,0.04)_100%)] dark:bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(0,0,0,0.22)_100%)]"
+      />
+
+      {/* REQUIREMENT 3: Underwater Caustic Light Patterns (2-3% opacity, ultra-slow movement) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-100">
+        <svg className="w-full h-full animate-caustics pointer-events-none opacity-[0.025]" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="causticsPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 0 10 Q 5 0 10 10 T 20 10" fill="none" stroke="#00C2D1" strokeWidth="0.4" opacity="0.6" />
+              <path d="M 10 0 Q 15 10 20 0 T 30 0" fill="none" stroke="#33E8F5" strokeWidth="0.3" opacity="0.4" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#causticsPattern)" />
+        </svg>
+      </div>
 
       <div
         className="absolute top-1/2 right-[12%] w-[600px] h-[600px] rounded-full blur-[180px] pointer-events-none"
         style={{
-          background: "rgba(0, 200, 255, 0.12)",
+          background: "rgba(0, 200, 255, 0.08)",
           transform: `translate3d(${mouseX * 0.1}px, calc(-50% + ${mouseY * 0.1}px), 0)`,
           transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       />
 
+      {/* REQUIREMENT 2: 3-Layer Premium Underwater Bubble System */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
         style={{
-          transform: `translate3d(${mouseX * 0.35}px, ${mouseY * 0.35}px, 0)`,
+          transform: `translate3d(${mouseX * 0.25}px, ${mouseY * 0.25}px, 0)`,
           transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
-        {glassBubbles.map((b) => (
+        {/* Layer 1: Background 20 Tiny Particles */}
+        {bgBubbles.map((b) => (
           <div
             key={b.id}
             style={{
               width: `${b.size}px`,
               height: `${b.size}px`,
               left: b.left,
-              opacity: b.opacity,
-              animationDuration: `${b.duration}s`,
-              animationDelay: `${b.delay}s`,
-              ["--bubble-x" as string]: `${b.deltaX}px`,
-            }}
-            className="absolute bottom-[-80px] rounded-full backdrop-blur-[3px] border pointer-events-none wave-bubble bg-gradient-to-br from-white/40 via-cyan-300/20 to-transparent border-cyan-300/30 dark:from-cyan-400/20 dark:via-cyan-400/5 dark:to-transparent dark:border-cyan-400/20"
+              filter: `blur(${b.blur}px)`,
+              ['--bubble-duration' as string]: `${b.duration}s`,
+              ['--bubble-delay' as string]: `${b.delay}s`,
+              ['--bubble-x' as string]: `${b.deltaX}px`,
+              ['--bubble-opacity-start' as string]: b.opacityStart,
+              ['--bubble-opacity-mid' as string]: b.opacityMid,
+              ['--bubble-opacity-mid2' as string]: b.opacityMid2,
+              ['--bubble-scale-start' as string]: b.scaleStart,
+              ['--bubble-scale-mid' as string]: b.scaleMid,
+              ['--bubble-scale-mid2' as string]: b.scaleMid2,
+              ['--bubble-scale-end' as string]: b.scaleEnd,
+            } as React.CSSProperties}
+            className="underwater-bubble absolute bottom-[-60px] rounded-full pointer-events-none bg-cyan-500/20 dark:bg-cyan-300/15"
           />
         ))}
-      </div>
 
-      <div className="absolute inset-0">
-        {dustParticles.map((p) => (
+        {/* Layer 2: Middle 15 Particles */}
+        {midBubbles.map((b) => (
           <div
-            key={p.id}
+            key={b.id}
             style={{
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              left: p.left,
-              animationDuration: `${p.duration}s`,
-              animationDelay: `${p.delay}s`,
-              ["--dust-x" as string]: `${p.deltaX}px`,
-            }}
-            className="wave-dust absolute rounded-full pointer-events-none bg-[#009FAB]/25 dark:bg-cyan-300/25"
+              width: `${b.size}px`,
+              height: `${b.size}px`,
+              left: b.left,
+              filter: `blur(${b.blur}px)`,
+              ['--bubble-duration' as string]: `${b.duration}s`,
+              ['--bubble-delay' as string]: `${b.delay}s`,
+              ['--bubble-x' as string]: `${b.deltaX}px`,
+              ['--bubble-opacity-start' as string]: b.opacityStart,
+              ['--bubble-opacity-mid' as string]: b.opacityMid,
+              ['--bubble-opacity-mid2' as string]: b.opacityMid2,
+              ['--bubble-scale-start' as string]: b.scaleStart,
+              ['--bubble-scale-mid' as string]: b.scaleMid,
+              ['--bubble-scale-mid2' as string]: b.scaleMid2,
+              ['--bubble-scale-end' as string]: b.scaleEnd,
+            } as React.CSSProperties}
+            className="underwater-bubble absolute bottom-[-70px] rounded-full pointer-events-none bg-gradient-to-br from-white/30 via-cyan-300/20 to-transparent border border-cyan-300/25 dark:from-cyan-400/15 dark:via-cyan-400/5 dark:border-cyan-400/20"
+          />
+        ))}
+
+        {/* Layer 3: Foreground 8 Glowing Particles */}
+        {fgBubbles.map((b) => (
+          <div
+            key={b.id}
+            style={{
+              width: `${b.size}px`,
+              height: `${b.size}px`,
+              left: b.left,
+              ['--bubble-duration' as string]: `${b.duration}s`,
+              ['--bubble-delay' as string]: `${b.delay}s`,
+              ['--bubble-x' as string]: `${b.deltaX}px`,
+              ['--bubble-opacity-start' as string]: b.opacityStart,
+              ['--bubble-opacity-mid' as string]: b.opacityMid,
+              ['--bubble-opacity-mid2' as string]: b.opacityMid2,
+              ['--bubble-scale-start' as string]: b.scaleStart,
+              ['--bubble-scale-mid' as string]: b.scaleMid,
+              ['--bubble-scale-mid2' as string]: b.scaleMid2,
+              ['--bubble-scale-end' as string]: b.scaleEnd,
+            } as React.CSSProperties}
+            className="underwater-bubble absolute bottom-[-80px] rounded-full pointer-events-none bg-gradient-to-br from-white/60 via-[#00C2D1]/40 to-transparent border border-white/50 shadow-[0_0_12px_rgba(0,194,209,0.4)] dark:from-cyan-300/40 dark:via-cyan-400/20 dark:border-cyan-300/40 dark:shadow-[0_0_12px_rgba(51,232,245,0.5)]"
           />
         ))}
       </div>
 
-      {/* LAYER 6: Reference Cyan Dots with Floating Pulse Animation */}
+      {/* LAYER 4: Ambient Floating Cyan Reference Bubbles */}
       <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -131,11 +236,10 @@ export default function WaveBackground({
               '--dot-duration': `${b.duration}s`,
               '--dot-delay': `${b.delay}s`,
             } as React.CSSProperties}
-            className="cyan-dot-bubble absolute rounded-full bg-[#00C2D1] shadow-[0_0_10px_rgba(0,194,209,0.5)] dark:bg-[#33E8F5] dark:shadow-[0_0_10px_rgba(51,232,245,0.7)]"
+            className="cyan-dot-bubble absolute rounded-full bg-[#00C2D1] shadow-[0_0_10px_rgba(0,194,209,0.4)] dark:bg-[#33E8F5] dark:shadow-[0_0_10px_rgba(51,232,245,0.6)]"
           />
         ))}
       </div>
-      {/* Bottom waves are rendered fixed at z-30 in front of content via BottomWaveOverlay */}
     </div>
   );
 }

@@ -14,16 +14,24 @@ export const AnimatedCard = ({
   const shouldReduce = useReducedMotion();
   const transition = shouldReduce
     ? { duration: 0 }
-    : { duration: 0.55, ease: [0.215, 0.61, 0.355, 1], delay };
+    : { duration: 0.95, ease: [0.16, 1, 0.3, 1], delay };
 
   return (
     <motion.div
       className={className}
-      initial={shouldReduce ? {} : { opacity: 0, y: 36 }}
-      whileInView={shouldReduce ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      initial={
+        shouldReduce
+          ? {}
+          : { opacity: 0, y: 60, scale: 0.98, filter: "blur(8px)" }
+      }
+      whileInView={
+        shouldReduce
+          ? {}
+          : { opacity: 1, y: 0, scale: 1.0, filter: "blur(0px)" }
+      }
+      viewport={{ once: true, amount: 0.12 }}
       transition={transition}
-      style={{ willChange: "transform, opacity" }}
+      style={{ willChange: "transform, opacity, filter" }}
     >
       {children}
     </motion.div>

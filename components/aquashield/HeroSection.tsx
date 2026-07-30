@@ -79,7 +79,7 @@ export default function HeroSection() {
     <section 
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-transparent transition-colors duration-500 pt-28 pb-16"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent transition-colors duration-500 pt-20 pb-20 lg:pt-24 lg:pb-24"
     >
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-12 lg:px-20 relative z-20 w-full">
@@ -123,7 +123,7 @@ export default function HeroSection() {
               Real-time sensor telemetry, environmental AI insights, and predictive contamination advisories — combined into smart alerts that help communities make safer decisions.
             </motion.p>
 
-            {/* Premium CTA Buttons */}
+            {/* Premium CTA Buttons (Requirement 5) */}
             <motion.div 
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,44 +131,22 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-1"
             >
               {/* Primary Button */}
-              <button className="group relative h-13 px-7 rounded-xl bg-gradient-to-r from-[#0B4F8C] via-[#009FAB] to-[#00C2D1] text-white font-inter font-semibold text-sm flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_4px_20px_rgba(0,194,209,0.25)] hover:shadow-[0_0_35px_rgba(0,194,209,0.45)] hover:-translate-y-1 hover:scale-[1.03] active:scale-[0.98] cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#00C2D1]/40">
+              <button className="group relative h-13 px-7 rounded-xl bg-gradient-to-r from-[#0B4F8C] via-[#009FAB] to-[#00C2D1] text-white font-inter font-semibold text-sm flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_8px_20px_-4px_rgba(0,194,209,0.35)] hover:shadow-[0_12px_28px_-4px_rgba(0,194,209,0.55)] hover:-translate-y-[2px] active:translate-y-0 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#00C2D1]/40">
                 <span className="relative z-10 font-inter">Explore Platform</span>
                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1.5 transition-transform duration-300" />
               </button>
 
               {/* Secondary Glass Button */}
-              <button className="group h-13 px-7 rounded-xl bg-white/78 dark:bg-[#0F2035]/85 hover:bg-white/95 dark:hover:bg-[#132338] border border-white/55 dark:border-slate-700/80 hover:border-cyan-400/50 text-[#0B2545] dark:text-slate-200 font-inter font-semibold text-sm flex items-center justify-center gap-2.5 backdrop-blur-[20px] transition-all duration-300 hover:-translate-y-1 active:scale-[0.98] shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00C2D1]/40">
+              <button className="group h-13 px-7 rounded-xl bg-white/90 dark:bg-[#0F2035]/90 hover:bg-white dark:hover:bg-[#132338] border border-slate-200/80 dark:border-slate-700/80 hover:border-cyan-400/50 text-[#0B2545] dark:text-slate-100 font-inter font-semibold text-sm flex items-center justify-center gap-2.5 backdrop-blur-[20px] transition-all duration-300 hover:-translate-y-[2px] active:translate-y-0 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#00C2D1]/40">
                 <Play className="w-4 h-4 text-[#00C2D1] fill-[#00C2D1] group-hover:rotate-[5deg] transition-transform duration-300" />
                 <span className="font-inter">View Live Dashboard</span>
               </button>
             </motion.div>
 
-            {/* Real-time Telemetry Metrics Summary Row */}
-            <motion.div 
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.36, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-y-2 gap-x-8 pt-4 text-xs text-slate-600 dark:text-slate-300 border-t border-slate-200/60 dark:border-slate-800/80 w-full font-inter"
-            >
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                </span>
-                <span className="font-inter font-bold text-[#0B2545] dark:text-white tabular-nums">1,240</span>
-                <span className="text-[#61748A] dark:text-slate-400 font-medium">sources monitored</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-cyan-500" />
-                <span className="font-inter font-bold text-[#0B2545] dark:text-white tabular-nums">8.6M</span>
-                <span className="text-[#61748A] dark:text-slate-400 font-medium">data points / day</span>
-              </div>
-            </motion.div>
-
           </div>
 
-          {/* ================= RIGHT SIDE: Outbreak Prevention Timeline ================= */}
-          <div className="w-full lg:w-[52%] relative mt-6 lg:mt-0">
+          {/* ================= RIGHT SIDE: Outbreak Prevention Timeline (Requirement 7: Lowered by ~24px) ================= */}
+          <div className="w-full lg:w-[52%] relative mt-12 lg:mt-6">
             
             {/* Ambient Radial Glow Behind Panel (rgba(0,200,255,0.12), blur 180px) */}
             <motion.div 

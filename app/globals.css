@@ -171,24 +171,65 @@ body {
   50% { transform: translateX(-1.5%); }
 }
 
-.wave-bubble {
-  --bubble-x: 8px;
-  animation: wave-float-up linear infinite;
-  will-change: transform;
+/* Underwater Caustic Light Patterns Animation */
+@keyframes causticsDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    opacity: 0.02;
+  }
+  50% {
+    transform: translate3d(1.5%, -2%, 0) scale(1.05) rotate(1deg);
+    opacity: 0.035;
+  }
+  100% {
+    transform: translate3d(-1.5%, 1%, 0) scale(0.98) rotate(-1deg);
+    opacity: 0.02;
+  }
+}
+
+.animate-caustics {
+  animation: causticsDrift 28s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Multi-depth Underwater Air Bubble Systems */
+@keyframes bubbleFloatUp {
+  0% {
+    transform: translate3d(0, 0, 0) scale(var(--bubble-scale-start, 0.9));
+    opacity: var(--bubble-opacity-start, 0.1);
+  }
+  33% {
+    transform: translate3d(var(--bubble-x, 12px), -45vh, 0) scale(var(--bubble-scale-mid, 1.1));
+    opacity: var(--bubble-opacity-mid, 0.4);
+  }
+  66% {
+    transform: translate3d(calc(var(--bubble-x, 12px) * -0.6), -85vh, 0) scale(var(--bubble-scale-mid2, 0.95));
+    opacity: var(--bubble-opacity-mid2, 0.3);
+  }
+  100% {
+    transform: translate3d(0, -125vh, 0) scale(var(--bubble-scale-end, 1.05));
+    opacity: 0;
+  }
+}
+
+.underwater-bubble {
+  animation: bubbleFloatUp var(--bubble-duration, 20s) linear infinite;
+  animation-delay: var(--bubble-delay, 0s);
+  will-change: transform, opacity;
 }
 
 @keyframes cyanDotPulseFloat {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
-    box-shadow: 0 0 10px rgba(0, 194, 209, 0.5);
+    box-shadow: 0 0 10px rgba(0, 194, 209, 0.4);
   }
   33% {
-    transform: translate3d(var(--dot-x, 12px), calc(var(--dot-y, 22px) * -0.6), 0) scale(1.22);
-    box-shadow: 0 0 18px rgba(0, 194, 209, 0.85);
+    transform: translate3d(var(--dot-x, 12px), calc(var(--dot-y, 22px) * -0.6), 0) scale(1.18);
+    box-shadow: 0 0 16px rgba(0, 194, 209, 0.75);
   }
   66% {
-    transform: translate3d(calc(var(--dot-x, 12px) * -0.6), calc(var(--dot-y, 22px) * -1), 0) scale(0.92);
-    box-shadow: 0 0 8px rgba(0, 194, 209, 0.4);
+    transform: translate3d(calc(var(--dot-x, 12px) * -0.6), calc(var(--dot-y, 22px) * -1), 0) scale(0.94);
+    box-shadow: 0 0 8px rgba(0, 194, 209, 0.3);
   }
 }
 
@@ -198,30 +239,52 @@ body {
   animation-delay: var(--dot-delay, 0s);
 }
 
-.wave-dust {
-  animation: wave-dust-drift ease-in-out infinite;
+/* Layered Ocean Wave Sways */
+@keyframes calmWaveSway1 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-1.8%, -2px, 0); }
 }
 
-.wave-sway {
-  animation: wave-sway 16s ease-in-out infinite;
+@keyframes calmWaveSway2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(1.4%, 2px, 0); }
 }
 
-.wave-sway-reverse {
-  animation: wave-sway 12s ease-in-out infinite reverse;
+@keyframes calmWaveSway3 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-1.0%, -1px, 0); }
 }
 
-.wave-paused .wave-bubble,
-.wave-paused .wave-dust,
-.wave-paused .wave-sway,
-.wave-paused .wave-sway-reverse {
+.wave-sway-1 {
+  animation: calmWaveSway1 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wave-sway-2 {
+  animation: calmWaveSway2 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wave-sway-3 {
+  animation: calmWaveSway3 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wave-paused .underwater-bubble,
+.wave-paused .cyan-dot-bubble,
+.wave-paused .wave-sway-1,
+.wave-paused .wave-sway-2,
+.wave-paused .wave-sway-3 {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wave-bubble,
-  .wave-dust,
-  .wave-sway,
-  .wave-sway-reverse,
+  .underwater-bubble,
+  .cyan-dot-bubble,
+  .animate-caustics,
+  .wave-sway-1,
+  .wave-sway-2,
+  .wave-sway-3,
   .animate-gradient-flow {
     animation: none !important;
   }

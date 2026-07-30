@@ -3,11 +3,11 @@
 import React from "react";
 
 // =============================================================================
-// BottomWaveOverlay — Fixed Ocean Wave Overlay (z-30)
+// BottomWaveOverlay — Fixed Living Ocean Surface Wave Overlay (z-30)
 //
-// Rendered at fixed bottom-0 z-30 IN FRONT of all section content (z-10).
-// As the user scrolls, all page elements (cards, text, buttons) pass
-// physically BEHIND this ocean wave surface instead of in front of it.
+// 4 Calm Layered Ocean Waves with varying amplitudes, speeds, and soft blur.
+// Fixed at bottom-0 z-30 in front of all section content (z-10).
+// Content passes naturally underneath/behind the water surface line.
 // =============================================================================
 
 export default function BottomWaveOverlay() {
@@ -16,52 +16,52 @@ export default function BottomWaveOverlay() {
       className="fixed bottom-0 inset-x-0 h-28 sm:h-32 pointer-events-none z-30 overflow-hidden"
       aria-hidden="true"
     >
-      {/* Wave 1: Deep Cyan Parallax Wave */}
+      {/* Wave Layer 1: Deepest Background Wave (blurred, slow 22s) */}
       <svg
-        className="wave-sway absolute bottom-0 w-[200%] h-24 sm:h-28 opacity-40 dark:opacity-30"
+        className="wave-sway-1 absolute bottom-0 w-[200%] h-24 sm:h-28 opacity-35 dark:opacity-25 blur-[1.5px]"
         viewBox="0 0 1440 120"
         fill="none"
         preserveAspectRatio="none"
       >
         <path
-          d="M0 50 C 360 90, 720 20, 1080 70 C 1260 40, 1380 15, 1440 45 L1440 120 L0 120 Z"
+          d="M0 55 C 360 85, 720 25, 1080 65 C 1260 42, 1380 18, 1440 48 L1440 120 L0 120 Z"
           fill="#0B4F8C"
         />
       </svg>
 
-      {/* Wave 2: Vibrant Aqua Gradient Swaying Wave */}
+      {/* Wave Layer 2: Mid-Background Aqua Gradient Wave (16s) */}
       <svg
-        className="wave-sway-reverse absolute bottom-0 w-[200%] h-24 sm:h-28 opacity-60 dark:opacity-45"
+        className="wave-sway-2 absolute bottom-0 w-[200%] h-24 sm:h-28 opacity-55 dark:opacity-40"
         viewBox="0 0 1440 120"
         fill="none"
         preserveAspectRatio="none"
       >
         <path
-          d="M0 60 C 360 20, 720 100, 1080 40 C 1260 10, 1380 70, 1440 60 L1440 120 L0 120 Z"
-          fill="url(#fixedWaveGrad2)"
+          d="M0 65 C 360 25, 720 95, 1080 45 C 1260 15, 1380 65, 1440 55 L1440 120 L0 120 Z"
+          fill="url(#calmWaveGrad2)"
         />
         <defs>
-          <linearGradient id="fixedWaveGrad2" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#00C2D1" />
-            <stop offset="50%" stopColor="#33E8F5" />
-            <stop offset="100%" stopColor="#009FAB" />
+          <linearGradient id="calmWaveGrad2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#009FAB" />
+            <stop offset="50%" stopColor="#00C2D1" />
+            <stop offset="100%" stopColor="#0B4F8C" />
           </linearGradient>
         </defs>
       </svg>
 
-      {/* Wave 3: Foreground Bright Cyan Glowing Water Surface */}
+      {/* Wave Layer 3: Foreground Main Water Crest Wave (11s) */}
       <svg
-        className="wave-sway absolute bottom-0 w-[200%] h-20 sm:h-24 opacity-80 dark:opacity-70"
+        className="wave-sway-3 absolute bottom-0 w-[200%] h-20 sm:h-24 opacity-85 dark:opacity-75"
         viewBox="0 0 1440 120"
         fill="none"
         preserveAspectRatio="none"
       >
         <path
-          d="M0 70 C 360 40, 720 80, 1080 50 C 1260 30, 1380 60, 1440 70 L1440 120 L0 120 Z"
-          fill="url(#fixedWaveGrad3)"
+          d="M0 72 C 360 45, 720 85, 1080 52 C 1260 32, 1380 62, 1440 72 L1440 120 L0 120 Z"
+          fill="url(#calmWaveGrad3)"
         />
         <defs>
-          <linearGradient id="fixedWaveGrad3" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id="calmWaveGrad3" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="#33E8F5" />
             <stop offset="50%" stopColor="#00C2D1" />
             <stop offset="100%" stopColor="#009FAB" />
@@ -69,8 +69,24 @@ export default function BottomWaveOverlay() {
         </defs>
       </svg>
 
-      {/* Bottom Water Shadow Edge */}
-      <div className="absolute inset-x-0 bottom-0 h-6 bg-gradient-to-t from-[#009FAB]/20 to-transparent pointer-events-none" />
+      {/* Wave Layer 4: Ambient Foam Highlight Crest Edge Line */}
+      <svg
+        className="wave-sway-3 absolute bottom-0 w-[200%] h-20 sm:h-24 opacity-90"
+        viewBox="0 0 1440 120"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0 72 C 360 45, 720 85, 1080 52 C 1260 32, 1380 62, 1440 72"
+          fill="none"
+          stroke="rgba(255, 255, 255, 0.45)"
+          strokeWidth="1.2"
+        />
+      </svg>
+
+      {/* Bottom Water Shadow Depth Gradient */}
+      <div className="absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-[#009FAB]/25 dark:from-[#07162B]/80 to-transparent pointer-events-none" />
     </div>
   );
 }
+
