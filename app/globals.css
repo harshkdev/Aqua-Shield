@@ -221,20 +221,16 @@ body {
 @keyframes cyanDotPulseFloat {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
-    box-shadow: 0 0 10px rgba(0, 194, 209, 0.4);
+    opacity: 0.6;
   }
-  33% {
-    transform: translate3d(var(--dot-x, 12px), calc(var(--dot-y, 22px) * -0.6), 0) scale(1.18);
-    box-shadow: 0 0 16px rgba(0, 194, 209, 0.75);
-  }
-  66% {
-    transform: translate3d(calc(var(--dot-x, 12px) * -0.6), calc(var(--dot-y, 22px) * -1), 0) scale(0.94);
-    box-shadow: 0 0 8px rgba(0, 194, 209, 0.3);
+  50% {
+    transform: translate3d(var(--dot-x, 12px), calc(var(--dot-y, 22px) * -0.6), 0) scale(1.15);
+    opacity: 0.9;
   }
 }
 
 .cyan-dot-bubble {
-  will-change: transform, box-shadow;
+  will-change: transform, opacity;
   animation: cyanDotPulseFloat var(--dot-duration, 8s) ease-in-out infinite;
   animation-delay: var(--dot-delay, 0s);
 }

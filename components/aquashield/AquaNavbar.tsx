@@ -80,13 +80,13 @@ export default function AquaNavbar() {
       }`}
       style={{
         background: isScrolled
-          ? theme === 'dark' ? 'rgba(7, 22, 43, 0.78)' : 'rgba(242, 250, 253, 0.82)'
+          ? theme === 'dark' ? 'rgba(7, 22, 43, 0.90)' : 'rgba(242, 250, 253, 0.92)'
           : 'rgba(255, 255, 255, 0.05)',
-        backdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(12px) saturate(140%)',
-        WebkitBackdropFilter: isScrolled ? 'blur(24px) saturate(180%)' : 'blur(12px) saturate(140%)',
+        backdropFilter: isScrolled ? 'blur(12px)' : 'blur(8px)',
+        WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'blur(8px)',
         borderBottom: isScrolled
-          ? theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.15)' : '1px solid rgba(255, 255, 255, 0.4)'
-          : '1px solid rgba(255, 255, 255, 0.25)',
+          ? theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid rgba(255, 255, 255, 0.35)'
+          : '1px solid rgba(255, 255, 255, 0.2)',
       }}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">

@@ -167,7 +167,7 @@ export default function DashboardPreview() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/25 dark:border-cyan-400/25 bg-white/80 dark:bg-[#132338]/90 text-[#00A8B5] dark:text-[#00C2D1] font-semibold text-xs uppercase tracking-wider mb-4 backdrop-blur-md"
           >
             <Radio className="w-3.5 h-3.5 text-[#00C2D1] animate-pulse" />
@@ -177,7 +177,7 @@ export default function DashboardPreview() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-[54px] font-outfit font-light text-[#05223D] dark:text-white mb-4 tracking-tight leading-[1.18]"
           >
@@ -187,7 +187,7 @@ export default function DashboardPreview() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ delay: 0.2 }}
             className="text-[17px] sm:text-[18px] text-slate-600 dark:text-slate-300 font-sans leading-[1.7] max-w-2xl mx-auto"
           >

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import { useInView } from "react-intersection-observer";
 
 interface WaveBackgroundProps {
@@ -16,7 +16,7 @@ const bgBubbles = Array.from({ length: 20 }, (_, i) => ({
   size: 2 + (i % 4), // 2px - 5px
   left: `${(i * 4.9 + 2.5) % 94}%`,
   duration: 22 + (i % 11), // 22s - 32s
-  delay: -((i % 7) * 2.5 + 0.8), // negative delays
+  delay: -((i % 7) * 2.5 + 0.8),
   deltaX: (i % 2 === 0 ? 1 : -1) * (10 + (i % 14)),
   opacityStart: 0.08,
   opacityMid: 0.16,
@@ -25,8 +25,7 @@ const bgBubbles = Array.from({ length: 20 }, (_, i) => ({
   scaleMid: 1.15,
   scaleMid2: 0.9,
   scaleEnd: 1.05,
-  blur: 2.0,
-  glow: false,
+  blur: 1.5,
 }));
 
 // Layer 2: Middle (15 medium particles)
@@ -45,7 +44,6 @@ const midBubbles = Array.from({ length: 15 }, (_, i) => ({
   scaleMid2: 0.95,
   scaleEnd: 1.1,
   blur: 0.8,
-  glow: false,
 }));
 
 // Layer 3: Foreground (8 glowing glass particles)
@@ -64,7 +62,6 @@ const fgBubbles = Array.from({ length: 8 }, (_, i) => ({
   scaleMid2: 0.96,
   scaleEnd: 1.15,
   blur: 0,
-  glow: true,
 }));
 
 const referenceBubbles = [
@@ -76,10 +73,6 @@ const referenceBubbles = [
   { id: 6, size: 10, left: '63.2%', top: '28.5%', duration: 7.5, delay: -5.0, deltaX: -18, deltaY: 22 },
   { id: 7, size: 7, left: '64.1%', top: '38.2%', duration: 8.5, delay: -1.8, deltaX: 14, deltaY: 25 },
   { id: 8, size: 6, left: '71.1%', top: '87.8%', duration: 9.5, delay: -4.8, deltaX: -15, deltaY: 20 },
-  { id: 9, size: 9, left: '15.4%', top: '65.2%', duration: 8.0, delay: -2.7, deltaX: 16, deltaY: 24 },
-  { id: 10, size: 11, left: '86.2%', top: '52.0%', duration: 9.0, delay: -4.1, deltaX: -14, deltaY: 26 },
-  { id: 11, size: 8, left: '52.0%', top: '72.4%', duration: 7.2, delay: -1.5, deltaX: 15, deltaY: 22 },
-  { id: 12, size: 10, left: '44.8%', top: '18.2%', duration: 8.8, delay: -3.2, deltaX: -13, deltaY: 24 },
 ];
 
 export default function WaveBackground({
@@ -92,28 +85,21 @@ export default function WaveBackground({
     <div
       ref={ref}
       className={`absolute inset-0 overflow-hidden pointer-events-none z-0${inView ? "" : " wave-paused"}`}
+      style={{ contain: "paint layout", transform: "translate3d(0, 0, 0)" }}
     >
-      {/* REQUIREMENT 1: Hero Background Depth (Multi-layered radial gradients) */}
-      <div 
-        className="absolute inset-0 transition-opacity duration-700 bg-[#F2FAFD] dark:bg-[#07162B]"
-      />
+      {/* Background Depth Layers */}
+      <div className="absolute inset-0 transition-opacity duration-700 bg-[#F2FAFD] dark:bg-[#07162B]" />
 
       {/* Layer 1: Center Soft Brightening Radial Highlight */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.75)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_50%_25%,rgba(0,194,209,0.12)_0%,transparent_55%)]"
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_25%,rgba(255,255,255,0.75)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_50%_25%,rgba(0,194,209,0.12)_0%,transparent_55%)]" />
 
       {/* Layer 2: Subtle Ambient Cyan Light Diffusion */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(186,242,252,0.6)_0%,transparent_50%),radial-gradient(circle_at_85%_20%,rgba(204,245,255,0.7)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_20%_25%,rgba(0,194,209,0.08)_0%,transparent_55%),radial-gradient(circle_at_80%_20%,rgba(11,79,140,0.14)_0%,transparent_55%)]"
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_30%,rgba(186,242,252,0.6)_0%,transparent_50%),radial-gradient(circle_at_85%_20%,rgba(204,245,255,0.7)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_20%_25%,rgba(0,194,209,0.08)_0%,transparent_55%),radial-gradient(circle_at_80%_20%,rgba(11,79,140,0.14)_0%,transparent_55%)]" />
 
-      {/* Layer 3: 2-4% Darkened Corner Vignette */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(7,22,43,0.04)_100%)] dark:bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(0,0,0,0.22)_100%)]"
-      />
+      {/* Layer 3: Corner Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(7,22,43,0.04)_100%)] dark:bg-[radial-gradient(ellipse_at_50%_50%,transparent_60%,rgba(0,0,0,0.22)_100%)]" />
 
-      {/* REQUIREMENT 3: Underwater Caustic Light Patterns (2-3% opacity, ultra-slow movement) */}
+      {/* Underwater Caustic Light Patterns */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-100">
         <svg className="w-full h-full animate-caustics pointer-events-none opacity-[0.025]" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
@@ -135,7 +121,7 @@ export default function WaveBackground({
         }}
       />
 
-      {/* REQUIREMENT 2: 3-Layer Premium Underwater Bubble System */}
+      {/* 3-Layer Underwater Air Bubbles */}
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -143,7 +129,6 @@ export default function WaveBackground({
           transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
-        {/* Layer 1: Background 20 Tiny Particles */}
         {bgBubbles.map((b) => (
           <div
             key={b.id}
@@ -167,7 +152,6 @@ export default function WaveBackground({
           />
         ))}
 
-        {/* Layer 2: Middle 15 Particles */}
         {midBubbles.map((b) => (
           <div
             key={b.id}
@@ -191,7 +175,6 @@ export default function WaveBackground({
           />
         ))}
 
-        {/* Layer 3: Foreground 8 Glowing Particles */}
         {fgBubbles.map((b) => (
           <div
             key={b.id}
@@ -215,7 +198,7 @@ export default function WaveBackground({
         ))}
       </div>
 
-      {/* LAYER 4: Ambient Floating Cyan Reference Bubbles */}
+      {/* Ambient Floating Cyan Reference Bubbles */}
       <div 
         className="absolute inset-0 z-10 pointer-events-none"
         style={{

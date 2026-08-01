@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState } from "react";
 
 export const AnimatedCard = ({
   children,
@@ -12,9 +13,25 @@ export const AnimatedCard = ({
   delay?: number;
 }) => {
   const shouldReduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const [scrollDir, setScrollDir] = useState<"down" | "up">("down");
+
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    const diff = current - prev;
+    if (Math.abs(diff) > 2) {
+      setScrollDir(diff > 0 ? "down" : "up");
+    }
+  });
+
   const transition = shouldReduce
     ? { duration: 0 }
-    : { duration: 0.95, ease: [0.16, 1, 0.3, 1], delay };
+    : { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: delay * 0.3 };
+
+  // Symmetrical Directional Offset:
+  // When scrolling DOWN: upcoming cards animate up from below (+48px)
+  // When scrolling UP: returning cards animate down from above (-48px)
+  const yOffset = scrollDir === "down" ? 48 : -48;
 
   return (
     <motion.div
@@ -22,20 +39,18 @@ export const AnimatedCard = ({
       initial={
         shouldReduce
           ? {}
-          : { opacity: 0, y: 60, scale: 0.98, filter: "blur(8px)" }
+          : { opacity: 0, y: yOffset }
       }
       whileInView={
         shouldReduce
           ? {}
-          : { opacity: 1, y: 0, scale: 1.0, filter: "blur(0px)" }
+          : { opacity: 1, y: 0 }
       }
-      viewport={{ once: true, amount: 0.12 }}
+      viewport={{ once: false, amount: 0.08 }}
       transition={transition}
-      style={{ willChange: "transform, opacity, filter" }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </motion.div>
   );
 };
-
-

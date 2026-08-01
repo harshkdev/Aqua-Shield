@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import AquaNavbar from "@/components/aquashield/AquaNavbar";
 import HeroSection from "@/components/aquashield/HeroSection";
@@ -17,25 +17,14 @@ import BottomWaveOverlay from "@/components/aquashield/BottomWaveOverlay";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
-// Dynamic import for DashboardPreview (contains Leaflet which needs SSR disabled)
-const DashboardPreview = dynamic(
-  () => import("@/components/aquashield/DashboardPreview"),
-  {
-    ssr: false,
-    loading: () => (
-      <section className="py-24">
-        <div className="container mx-auto px-4">
-          <div className="h-[600px] rounded-3xl bg-[#0F2035]/80 animate-pulse" />
-        </div>
-      </section>
-    ),
-  }
-);
+import DashboardPreview from "@/components/aquashield/DashboardPreview";
 
 export default function LandingPage() {
   const { theme } = useTheme();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    setIsLoaded(true);
     if (typeof window !== "undefined") {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
@@ -46,7 +35,7 @@ export default function LandingPage() {
 
   return (
     <SmoothScrollProvider>
-      <div className="relative min-h-screen bg-[#F2FAFD] dark:bg-[#07162B] transition-colors duration-500">
+      <div className={`relative min-h-screen bg-[#F2FAFD] dark:bg-[#07162B] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${isLoaded ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-3 scale-[0.995]"}`}>
         {/* 1 Single Global GPU-Accelerated Atmospheric Backdrop (0% CPU Footprint) */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <WaveBackground />
